@@ -15,7 +15,7 @@ Param=read_config_json(fid); fclose(fid);
 zone_code=Param.acronym; Slab.zone_code=zone_code; %Slab 
 Merc_Zone=Param.Merc_zone;   %sMercator projection zone
 Zone=Param.zone_name;
-
+Sub_boundary_logic=logical(false);   
 if Param.Configure.mesh_sub_boundary==1
     Sub_boundary_logic=logical(true);
 end
