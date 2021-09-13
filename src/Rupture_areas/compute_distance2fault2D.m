@@ -7,6 +7,8 @@ p0=zeros(size(stations,1),2); distanceJB=zeros(size(stations,1),1); logic_statio
 if logic_sbnd
     index=inpolygon(stations(:,1),stations(:,2),fault(:,1),fault(:,2));
     logic_stations(index)=1;
+else
+    logic_stations(:)=1;
 end
 
 if logic_plot
