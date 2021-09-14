@@ -86,6 +86,14 @@ Slab.int_dist=int_dist;
 
 filename=strcat('ind_aux_full_',zone_code);
 save(filename,'ind_aux_full');
+
+!rm EToE.dat
+!mv ETo*.mat *mesh*.inp *matrix* ind_aux* barycenters_all* ../
+!cd ../
+!mv ETo*.mat ../config_files/Connection_cell
+!mv *mesh*.inp ../config_files/Mesh
+!mv *matrix_distance.bin ../config_files/Matrix_distances
+!mv ind_aux* barycenters_all* ../config_files/Barycenters
                                                  
 return
 %#######################################################################################################
