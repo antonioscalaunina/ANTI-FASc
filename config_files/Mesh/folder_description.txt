@@ -1,0 +1,1 @@
+Folder containing the mesh in *.inp format
