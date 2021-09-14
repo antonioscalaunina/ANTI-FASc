@@ -1,5 +1,5 @@
 {"zone_name": "kurilsjapan", 
-	"Merc_zone": 57,
+	"Merc_zone": 54,
        	"acronym": "KuJ",
  
 "Event": {
@@ -8,7 +8,7 @@
 "Magnitude" : 9.1
 },
 "Configure": {
-"application": "PTF",
+"application": "Hazard",
 "shape": "Rectangle",
 "mesh_sub_boundary": 0,
 "preprocess": 1,
