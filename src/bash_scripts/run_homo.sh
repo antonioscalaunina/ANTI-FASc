@@ -43,7 +43,7 @@ for j in `seq 1 $NUM_MAGN`; do
        #echo $eventid
 #DOM al primo run creo i seed per il caso omogeneo e poi per i casi successivi li vado a leggere nel folder2?     
      #NUM_STOCHASTIC=$(wc -l "list_seed" | awk '{print $1}')
-       for i in `seq 1 10`; do
+       for i in `seq 1 5`; do
        INDEX=$i
        #echo $INDEX
        if [ $INDEX -lt 10 ]
@@ -58,10 +58,10 @@ for j in `seq 1 $NUM_MAGN`; do
               STRING4FILE=$INDEX
               STRING4FILE=${STRING4FILE//' '/''}
         fi
-        if [ $INDEX -le 4 ]
+        if [ $INDEX -le 2 ]
            then
               numb_gauss=1
-           elif [  $INDEX -gt 4 ] && [ $INDEX -le 7 ]
+           elif [  $INDEX -gt 2 ] && [ $INDEX -le 4 ]
            then
               numb_gauss=2
            else
