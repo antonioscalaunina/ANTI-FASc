@@ -4,7 +4,7 @@ close all
 tic
 
 %addpath('C:\Users\ascal\Documents\MATLAB')
-%addpath(genpath('..')); addpath('.');
+addpath(genpath('..')); addpath('.');
 
 %% Input to be checked for each case
 % Considered non-parameterized alternatives:
