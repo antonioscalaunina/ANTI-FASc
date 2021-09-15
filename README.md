@@ -17,7 +17,7 @@ The software is composed by three modules
 3 - k223d - k-square slip distributions to 3D fault planes
 Computation of ensembles of stochastic k-square slip distributions for all the previously selected areas also accounting for other conditions (e.g. homogeneous or variable rigidity, surface slip amplification)
 
-Along with the codes it has been provided a large dataset of precomputed mesh and rupture barycenter selection optimised for an assigned magnitude binning and considering the scaling relationship proposed by Strasser et al. (2010, SRL) and Murotani et al. (2013, SRL)
+Along with the codes it has been provided a large dataset of precomputed meshes and the related rupture barycenters selections optimised for an assigned magnitude binning and considering the scaling relationship proposed by Strasser et al. (2010, SRL) and Murotani et al. (2013, SRL)
 
 
 
