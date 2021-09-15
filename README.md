@@ -8,7 +8,7 @@ The software is composed by three modules
     
    - A mesh generator 
     
-   - The computation (through the lateration algorithm of k223d see Herrero and Murphy 2018, GJI) of a matrix containing all the interdistances among nodes for the computed mesh
+   - The computation (through the lateration algorithm of k223d, see Herrero and Murphy 2018, GJI) of a matrix containing all the interdistances among nodes for the computed mesh
     
    - The computation of a grid of rupture barycenters optimised to minimize the repetition of similar rupture areas during the nex stage. This grid depends on magnitude binning and prescribed scaling law(s)
 
