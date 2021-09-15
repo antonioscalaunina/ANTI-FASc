@@ -35,7 +35,7 @@ for j in `seq 1 $NUM_MAGN`; do
    #cp $folder/Slip_PDF*.dat $folder_out
    ls $folder_out/QuakeArea*.dat > index_scenario
    NUM_SCENARIO=$(wc -l "index_scenario" | awk '{print $1}')
-   echo $NUM_SCENARIO 10 >> index_file.dat
+   echo $NUM_SCENARIO 5 >> index_file.dat
    for l in `seq 1 $NUM_SCENARIO`; do
        file_event=`sed -n $l"p" index_scenario`
        #echo $file_event
