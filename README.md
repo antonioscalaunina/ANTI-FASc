@@ -6,23 +6,23 @@ The software is composed by three modules
 
 1- Preprocess module including:
     
-    A mesh generator 
+   A mesh generator 
     
-    The computation (through the lateration algorithm of k223d see Herrero and Murphy 2018, GJI) of a matrix containing all the interdistances among nodes for the computed mesh
+   The computation (through the lateration algorithm of k223d see Herrero and Murphy 2018, GJI) of a matrix containing all the interdistances among nodes for the computed mesh
     
-    The computation of a grid of rupture barycenters optimised to minimize the repetition of similar rupture areas during the nex stage. This grid depends on magnitude binning and prescribed scaling law(s)
+   The computation of a grid of rupture barycenters optimised to minimize the repetition of similar rupture areas during the nex stage. This grid depends on magnitude binning and prescribed scaling law(s)
 
 2 - Rupture areas computation:
     
-    This part has two different use mode:
+   This part has two different use mode:
          
-         Hazard: it computes all the possible different rupture areas (according to the previous barycenters selection) in the prescribed magnitude bins
+   Hazard: it computes all the possible different rupture areas (according to the previous barycenters selection) in the prescribed magnitude bins
          
-         PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake
+   PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake
 
 3 - k223d - k-square slip distributions to 3D fault planes
 
-    Computation of ensembles of stochastic k-square slip distributions for all the previously selected areas also accounting for other conditions (e.g. homogeneous or variable rigidity, surface slip amplification)
+   Computation of ensembles of stochastic k-square slip distributions for all the previously selected areas also accounting for other conditions (e.g. homogeneous or variable rigidity, surface slip amplification)
 
 Along with the codes it has been provided a large dataset of precomputed meshes and the related rupture barycenters selections optimised for an assigned magnitude binning and considering the scaling relationship proposed by Strasser et al. (2010, SRL) and Murotani et al. (2013, SRL)
 
