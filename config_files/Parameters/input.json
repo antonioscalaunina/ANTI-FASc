@@ -1,7 +1,11 @@
-{"zone_name": "vanuatu", 
-	"Merc_zone": 59,
-       	"acronym": "NeH",
- 
+{"zone_name": "kurilsjapan2", 
+	"Merc_zone": 54,
+    "acronym": "KuS",
+	"mesh_gen": 1,
+    "slab_file": "kur_slab2_dep_02.24.18.xyz",
+    "seismog_depth": 60,
+    "element_size": 12.5e3,
+       	
 "Event": {
 "Name": "Vanuatu_test",
 "Hypo_LonLat" : [168.44, -17.13],
@@ -10,6 +14,7 @@
 "Configure": {
 "application": "PTF",
 "shape": "Rectangle",
+"number_stoch": 5,
 "mesh_sub_boundary": 0,
 "preprocess": 1,
 "file_baryc": 0,
