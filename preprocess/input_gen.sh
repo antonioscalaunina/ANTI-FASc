@@ -1,7 +1,7 @@
 #!/bin/bash
 
 matlab -nodisplay -nosplash -nodesktop -r "run('create_mesh_file.m'); exit;"
-mv *mesh*.inp matrix_connection_gen
+#mv *mesh*.inp matrix_connection_gen
 cd matrix_connection_gen
 make clean
 make

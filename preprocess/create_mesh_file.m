@@ -60,7 +60,7 @@ end
 % disp('WARNING: The same acronym will be used later in the execution of Rupture_areas_OF.m')
 % slab_acronym=input('Please digit an acronym for the slab (in the form "AaA") \n\n');
 slab_acronym=Zone.acronym;
-namefile=strcat(slab_acronym,'_mesh_15km.inp');
+namefile=strcat('matrix_connection_gen/',slab_acronym,'_mesh_15km.inp');
 
 fid=fopen(namefile,'w');
 
