@@ -34,12 +34,12 @@ for j in `seq 1 $NUM_MAGN`; do
    cp $folder/QuakeArea*.dat $folder_out
    cp $folder/Slip_PDF*.dat $folder_out
    cp $folder/mu_Slip_aux*.dat $folder_out
-   cp $folder_seed/Seed_00* $folder_out
-   cp $folder_seed/Seed_01* $folder_out
-   cp $folder_seed/Seed_02* $folder_out
-   cp $folder_seed/Seed_03* $folder_out
-   cp $folder_seed/Seed_04* $folder_out
-   cp $folder_seed/Seed_05* $folder_out
+   #cp $folder_seed/Seed_00* $folder_out
+   #cp $folder_seed/Seed_01* $folder_out
+   #cp $folder_seed/Seed_02* $folder_out
+   #cp $folder_seed/Seed_03* $folder_out
+   #cp $folder_seed/Seed_04* $folder_out
+   #cp $folder_seed/Seed_05* $folder_out
    ls $folder_out/QuakeArea*.dat > index_scenario
    NUM_SCENARIO=$(wc -l "index_scenario" | awk '{print $1}')
    echo $NUM_SCENARIO 5 >> index_file.dat
