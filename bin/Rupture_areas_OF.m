@@ -91,10 +91,12 @@ switch application
          Zone=Param.zone_name;
          namefolder=strcat(Zone,'_Hazard');
          namefolder_slip=strcat(namefolder,'_slip');
-end	 
+end
+numb_stoch=Param.Configure.numb_stoch;
 fid=fopen('../name_folders_file.dat','w');
 fprintf(fid,'%s',namefolder); fprintf(fid,'\n'); fprintf(fid,'%s',namefolder_slip);
 fprintf(fid,'\n'); fprintf(fid,'%s',zone_code);
+fprintf(fid,'\n'); fprintf(fid,'%d',numb_stoch);
 fclose(fid);
 
 %% Magnitude bins and scaling laws (Strasser and Murotani size in km - km^2)
