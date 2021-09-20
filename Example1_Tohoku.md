@@ -1,4 +1,6 @@
-In this brief guide we describe the insturctions to install all the necessary components to run ANTI-FASc and a practical example.
+# EXAMPLE 1 Tohoku
+
+In this brief guide we describe the instructions to install all the necessary components to run ANTI-FASc and a practical example.
 All the instructions have been tested on the OS Ubuntu20.04
 
 - INSTALLATION:
@@ -46,3 +48,30 @@ In the preprocess part we firstly generate a mesh defined on the Kurils-Japan sl
     https://www.sciencebase.gov/catalog/item/5aa4060de4b0b1c392eaaee2
     
 ANTI-FASc can work by using both the *_dep*.xyz and the *_dep*.grd file that you can download here. These two files, for this example are already available in the folder utils/sz_slabs/
+
+The mesh generation will be managed through the configuration set in the file *config_files/Parameters/input.json*:
+
+    {"zone_name": "kurilsjapan2",
+        "Merc_zone": 54,
+    "acronym": "KJ2",
+        "mesh_gen": 1,
+    "slab_file": "kur_slab2_dep_02.24.18.xyz",
+    "seismog_depth": 60,
+    "element_size": 12.5e3,
+
+    "Event": {
+    "Name": "Tohoku",
+    "Hypo_LonLat" : [142.369, 38.322],
+    "Magnitude" : 9.0
+    },
+    "Configure": {
+    "application": "PTF",
+    "shape": "Rectangle",
+    "numb_stoch": 5,
+    "variable_mu": 1, 
+
+move into the preprocess folder:
+
+    cd preprocess
+    
+If you have a licensed version of MAT
