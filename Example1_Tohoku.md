@@ -51,27 +51,41 @@ ANTI-FASc can work by using both the *_dep*.xyz and the *_dep*.grd file that you
 
 The mesh generation will be managed through the configuration set in the file *config_files/Parameters/input.json*:
 
-    {"zone_name": "kurilsjapan2",
-        "Merc_zone": 54,
-    "acronym": "KJ2",
-        "mesh_gen": 1,
-    "slab_file": "kur_slab2_dep_02.24.18.xyz",
-    "seismog_depth": 60,
-    "element_size": 12.5e3,
+    {"zone_name": "kurilsjapan2",    #Name chosen by the user, arbitrary
+        "Merc_zone": 54,             #Mercator Zone
+    "acronym": "KJ2",                #Acronym - it will be used to generate and use all the configuration files all the process long
+        "mesh_gen": 1,               # 1 means that a new mesh should be generated
+    "slab_file": "kur_slab2_dep_02.24.18.xyz",    #name of the Slab 2.0 file
+    "seismog_depth": 60,            #Max depth included in the mesh
+    "element_size": 12.5e3,         #Average size of mesh face
 
     "Event": {
-    "Name": "Tohoku",
-    "Hypo_LonLat" : [142.369, 38.322],
-    "Magnitude" : 9.0
+    "Name": "Tohoku",               # Name for the event
+    "Hypo_LonLat" : [142.369, 38.322],   #Fixed epicenter
+    "Magnitude" : 9.0                    #Fixed magnitude
     },
     "Configure": {
     "application": "PTF",
     "shape": "Rectangle",
-    "numb_stoch": 5,
-    "variable_mu": 1, 
+    "numb_stoch": 5,                     # Number of stochastic slip for each rupture areas
+    "variable_mu": 1,                    # 1 means that also the distributions with variable rigidity have to be computed
+    "Magnitude_lb": 0.15,                # Magnitude in a range [Mw-0.15 Mw+0.15] will be accounted
+    "Magnitude_ub": 0.15,
+    "hypo_baryc_distance": 1.0,          # Rupture barycenters at less than 1 Length (inferred from scaling law for each Magnitude bin) form hypocenter will be accounted
 
 move into the preprocess folder:
 
     cd preprocess
     
-If you have a licensed version of MAT
+If you have a licensed version of MATLAB run the script *create_mesh_file.m*.
+Properly adding matlab command to your .bashrc file you can also run from the terminal typing:
+
+    matlab -nodisplay -nosplash -nodesktop -r "run('create_mesh_file.m'); exit;"
+    
+Alternatively, if you have installed MATLAB runtime, type:
+
+    ./run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99
+    
+
+
+    
