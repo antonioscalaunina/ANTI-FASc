@@ -33,6 +33,9 @@ For some linux distributions it could be necessary to type:
     git-lfs clone https://github.com/antonioscalaunina/ANTI-FASc.git
     
 to download all the precomputed configuration files.
+Once downloaded the package, you may need to change permission for *.sh* files. In the main directory type:
+
+    sudo chmod -R u+x *.sh
 
 The MATLAB modules of the platform can be run either installing a licensed version (MATLAB R2020a or newer) or installing a MATLAB Runtime (MATLAB Runtime R2020a or newer) for free.
 The released versions and the instructions for installations can be found at: 
@@ -85,6 +88,26 @@ Properly adding matlab command to your .bashrc file you can also run from the te
 Alternatively, if you have installed MATLAB runtime, type:
 
     ./run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99
+    
+The second step will create some importante configuration files containing the interdistances between all the grid nodes, type the following commands:
+
+    cd matrix_connection_gen
+    make clean
+    make
+    ./input_conn.x
+    
+Finally the last script will generate a selection of rupture barycenters having a fixed minimum interdistance, optimised to avoid to have too much similar rupture areas, in particular for large magnitude bins. This selection is based on the magnitude binning and the selected scaling laws that are set in the file *config_files/Parameters/scaling_relationships.json*. In this example we used a selection similar to that one proposed for TSUMAPS-NEAM (see Basili et al. 2021) using the Strasser et al. (2010) and the Murotani et al.(2013) scaling relationship. You can either run this part from the MATLAB interface with the script *ind_baryc_pre.m* or typing:
+
+     matlab -nodisplay -nosplash -nodesktop -r "run('ind_baryc_pre.m'); exit;"
+     
+Alternatively, with the MATLAB Runtime you can digit:
+
+    ./run_ind_baryc_pre.sh /usr/local/MATLAB/MATLAB_Runtime/v99
+    
+
+- RUPTURE AREA COMPUTATION
+
+(To be continued)
     
 
 
