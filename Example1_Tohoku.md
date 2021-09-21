@@ -1,6 +1,6 @@
 # EXAMPLE 1 Tohoku earthquake
 
-In this brief guide we describe the instructions to install all the necessary components to run ANTI-FASc and a practical example.
+In this brief guide, we describe the instructions to install all the necessary requirements to run ANTI-FASc along with a practical example.
 All the instructions have been tested on the OS Ubuntu20.04. The procedure consists of 4 phases: Installation, Preprocess, Rupture Areas and Slip Distribution, Postprocess
 
 # 1 - Installation
@@ -20,9 +20,9 @@ It could also be useful to install git-lfs:
     sudo apt-get install git-lfs
     git lfs install
 
-This will allow you to download the whole package of the code, including all the configuration files already computed and distributed in the *config_files/* subdfolders
+git-lfs will allow you to download the whole package of the code that also includes some pre-computed configuration files distributed in the *config_files/* subdfolders
 
-To donwload the code you can either download the zip archive from the following web-page: (this option does not download all the precomputed configuration files, however you can create them on your own and to run the following example the configuration files database is not necessary, see PREPROCESS section of this guide) 
+To donwload the code you can either download the zip archive from the following web-page: (this option does not download all the precomputed configuration files, however you can create them on your own. Moreover, to run the following example the configuration files database is not necessary, see PREPROCESS section of this guide) 
 
     https://github.com/antonioscalaunina/ANTI-FASc
     
@@ -63,7 +63,7 @@ The mesh generation will be managed through the configuration set in the file *c
         "mesh_gen": 1,               # 1 means that a new mesh should be generated
     "slab_file": "kur_slab2_dep_02.24.18.xyz",    #name of the Slab 2.0 file
     "seismog_depth": 60,            #Max depth included in the mesh
-    "depth_interpolator": "v4"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" is the suggested option but it could not work depending on MATLAB configuration. In this case change with "nearest"
+    "depth_interpolator": "v4"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" is the suggested option but it could not work depending on MATLAB                                           configuration. In this case change with "nearest"
     "element_size": 12.5e3,         #Average size of mesh face
 
     "Event": {
@@ -81,11 +81,12 @@ The mesh generation will be managed through the configuration set in the file *c
     "hypo_baryc_distance": 1.0,          # Rupture barycenters at less than 1 Length (inferred from scaling law for each Magnitude bin) form hypocenter will be accounted
 
 
-To sart the preprocess run, move into the preprocess folder:
+To start the preprocess run, move into the preprocess folder:
 
     cd preprocess
     
 If you have a licensed version of MATLAB run the script *create_mesh_file.m*.
+
 Properly adding matlab command to your .bashrc file you can also run it from the terminal typing:
 
     matlab -nodisplay -nosplash -nodesktop -r "run('create_mesh_file.m'); exit;"
@@ -94,18 +95,18 @@ Alternatively, if you have installed MATLAB runtime, type:
 
     ./run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
-It has been verified that in some Ubuntu versions for the WSL distributions you need to type (also valid for the other MATLAB compiled scripts):
+It has been verified that in some Ubuntu versions for the WSL distributions you may need to type (also valid for the other MATLAB compiled scripts):
 
     sh run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
-The second step will create some important configuration files containing the interdistances between all the grid nodes, type the following commands:
+The second step will create some needed configuration files such as the matrix of the grid nodes interdistance. Please type the following commands:
 
     cd matrix_connection_gen
     make clean
     make
     ./input_conn.x
     
-Finally the last script will generate a selection of rupture barycenters having a fixed minimum interdistance, optimised to avoid to have too much similar rupture areas, in particular for large magnitude bins. This selection is based on the magnitude binning and the selected scaling laws that are set in the file *config_files/Parameters/scaling_relationships.json*. In this example we used a selection similar to that one proposed in the framework of the project TSUMAPS-NEAM (see Basili et al. 2021) using the Strasser et al. (2010) and the Murotani et al.(2013) scaling relationships. You can either run this part from the MATLAB interface with the script *ind_baryc_pre.m* or typing:
+Finally the last script will generate a selection of rupture barycenters having a fixed minimum interdistance. This distance is optimised to avoid to have too much similar rupture areas, in particular for large magnitude values. This selection is based on the magnitude binning and the selected scaling laws that are set in the file *config_files/Parameters/scaling_relationships.json*. In this example we use a selection similar to that one proposed in the framework of the project TSUMAPS-NEAM (see Basili et al. 2021) using the Strasser et al. (2010) and the Murotani et al.(2013) scaling relationships. You can either run this part from the MATLAB interface with the script *ind_baryc_pre.m* or typing:
 
      matlab -nodisplay -nosplash -nodesktop -r "run('ind_baryc_pre.m'); exit;"
      
@@ -116,7 +117,7 @@ Alternatively, with the MATLAB Runtime you can type:
 
 # 3 - Rupture areas and slip distributions 
 
-To start the computation of the rupture areas, in the folder *bin*, run the MATLAB script *Rupture_areas_OF.m*
+To start the computation of the rupture areas, in the folder *bin/*, run the MATLAB script *Rupture_areas_OF.m*
 
 it can be also run typing:
 
@@ -168,7 +169,7 @@ Finally with the following commands you run the slip distributions computation:
     │   │   │   ├── Slip4HySea00007_005.dat
     .......................................
  
- The Slip4HySea* files are in a standard format used as input by the software Tsunami-HySea (https://edanya.uma.es/hysea/):
+ The Slip4HySea* files are in the standard format used as input by the software Tsunami-HySea (https://edanya.uma.es/hysea/):
  
       LON1     LAT1    DEPTH1(km)      LON2    LAT2    DEPTH2(km)      LON3    LAT3    DEPTH3(km)      RAKE    SLIP(m)
     142.790939   36.904644   17.916529  142.853439   36.786213   16.508039  142.949966   36.886333   16.052090   90.000000   15.071705
@@ -188,11 +189,11 @@ Finally with the following commands you run the slip distributions computation:
     142.473907   38.087746   29.206949  142.514374   37.983589   27.932550  142.614288   38.076675   26.574770   90.000000   18.332708
     ..................................................................................................................................
     
- They can be easily plotted by simple personal scripts. In the folder *utils* there is the script *slip_distribution_plot.m*. Running it and providing the name of folder in the format:
+ They can be easily plotted by simple personal scripts. In the folder *utils* there is the script *slip_distribution_plot.m*. Running it providing the name of folder in the format:
  
      output/*name_folder*_slip/*rigidity*/*magnitude*/*scaling_law*
      
-the plot of the slip distributions will be saved in the same output folder. It is worth to clarify that these plots are simplified (and fast) sketches of the slip distributions, that can be promptly used to verify that the process lead to accetable results.
+the plot of the slip distributions will be saved in the same output folder. It is worth to clarify that these plots are simplified (and fast) sketches of the slip distributions, that can be promptly used to verify that the process led to accetable results.
     
 
 
