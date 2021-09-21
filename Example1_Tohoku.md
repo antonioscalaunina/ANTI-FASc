@@ -1,7 +1,7 @@
 # EXAMPLE 1 Tohoku
 
 In this brief guide we describe the instructions to install all the necessary components to run ANTI-FASc and a practical example.
-All the instructions have been tested on the OS Ubuntu20.04
+All the instructions have been tested on the OS Ubuntu20.04. The procedure consists of 4 phases: Installation, Preprocess, Rupture Areas and Slip Distribution, Postprocess
 
 - INSTALLATION:
 
@@ -105,9 +105,60 @@ Alternatively, with the MATLAB Runtime you can digit:
     ./run_ind_baryc_pre.sh /usr/local/MATLAB/MATLAB_Runtime/v99
     
 
-- RUPTURE AREA COMPUTATION
+- RUPTURE AREAS AND SLIP DISTRIBUTIONS 
 
-(To be continued)
+In the folder bin run the script for the Rupture area computation, that is the MATLAB script *Rupture_areas_OF.m*
+
+it can be also run typing:
+
+    matlab -nodisplay -nosplash -nodesktop -r "run('Rupture_areas_OF.m'); exit;"
+    
+or, alternatively (with MATLAB Runtime)
+
+    ./run_Rupture_areas_OF.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
+    
+Finally with the following commands you run the slip distribution computation:
+
+     cd ../src/k223d/
+     make clean
+     make
+     cd ../
+     ./src/bash_scripts/run_homo.sh    # To compute slip distributions with uniform rigidity
+     ./src/bash_scripts/run_var.sh     # To compute slip distributions with variable rigidity
+     
+ # POSTPROCESSING
+ 
+ The output will be organized as shown in the following tree:
+ 
+     output/
+    └── Tohoku_M90_E14237_N3832_slip
+    ├── homogeneous_mu
+    │   ├── 8_8846
+    │   │   ├── Murotani
+    │   │   │   ├── KJ2_mesh_15km.inp
+    │   │   │   ├── Slip4HySea00001_001.dat
+    │   │   │   ├── Slip4HySea00001_002.dat
+    │   │   │   ├── Slip4HySea00001_003.dat
+    │   │   │   ├── Slip4HySea00001_004.dat
+    │   │   │   ├── Slip4HySea00001_005.dat
+    │   │   │   ├── Slip4HySea00003_001.dat
+    │   │   │   ├── Slip4HySea00003_002.dat
+    │   │   │   ├── Slip4HySea00003_003.dat
+    │   │   │   ├── Slip4HySea00003_004.dat
+    │   │   │   ├── Slip4HySea00003_005.dat
+    │   │   │   ├── Slip4HySea00005_001.dat
+    │   │   │   ├── Slip4HySea00005_002.dat
+    │   │   │   ├── Slip4HySea00005_003.dat
+    │   │   │   ├── Slip4HySea00005_004.dat
+    │   │   │   ├── Slip4HySea00005_005.dat
+    │   │   │   ├── Slip4HySea00007_001.dat
+    │   │   │   ├── Slip4HySea00007_002.dat
+    │   │   │   ├── Slip4HySea00007_003.dat
+    │   │   │   ├── Slip4HySea00007_004.dat
+    │   │   │   ├── Slip4HySea00007_005.dat
+    .......................................
+ 
+ 
     
 
 
