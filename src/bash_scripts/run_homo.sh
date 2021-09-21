@@ -3,6 +3,8 @@
 event=`sed -n 1"p" name_folders_file.dat`
 event_out=`sed -n 2"p" name_folders_file.dat`
 zone_code=`sed -n 3"p" name_folders_file.dat`
+numb_stoch=`sed -n 4"p" name_folders_file.dat`
+variable_mu=`sed -n 5"p" name_folders_file.dat`
 ls $event > Magnitude_ev
 NUM_MAGN=$(wc -l "Magnitude_ev" | awk '{print $1}')
 folder_in=$(pwd | awk '{print $1}')
@@ -35,7 +37,7 @@ for j in `seq 1 $NUM_MAGN`; do
    #cp $folder/Slip_PDF*.dat $folder_out
    ls $folder_out/QuakeArea*.dat > index_scenario
    NUM_SCENARIO=$(wc -l "index_scenario" | awk '{print $1}')
-   echo $NUM_SCENARIO 5 >> index_file.dat
+   echo $NUM_SCENARIO $numb_stoch >> index_file.dat
    for l in `seq 1 $NUM_SCENARIO`; do
        file_event=`sed -n $l"p" index_scenario`
        #echo $file_event
@@ -43,7 +45,7 @@ for j in `seq 1 $NUM_MAGN`; do
        #echo $eventid
 #DOM al primo run creo i seed per il caso omogeneo e poi per i casi successivi li vado a leggere nel folder2?     
      #NUM_STOCHASTIC=$(wc -l "list_seed" | awk '{print $1}')
-       for i in `seq 1 5`; do
+       for i in `seq 1 $numb_stoch`; do
        INDEX=$i
        #echo $INDEX
        if [ $INDEX -lt 10 ]
@@ -83,3 +85,12 @@ for j in `seq 1 $NUM_MAGN`; do
 #mv $folder_out/*  /nas/cat2/scala/italian_map/$folder_out 
  done
 done
+if [ $variable_mu -eq 0 ]
+   then
+       mkdir input
+       mkdir output
+       mv $event_out output
+       mv $event input
+       rm Magnitude_ev *.txt index_scenario input_magnitude *.dat
+fi
+
