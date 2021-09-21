@@ -45,7 +45,7 @@ The released versions and the instructions for installations can be found at:
     
 -  PREPROCESS
 
-In this example we generate slip distributions compatible with the estimated magnitude and location of the Mw 9.1 Tohoku earthquake (2011-03-11). 
+In this example we generate slip distributions compatible with the estimated magnitude and location of the Mw 9.0 Tohoku earthquake (2011-03-11). 
 In the preprocess part we firstly generate a mesh defined on the Kurils-Japan slab geometry defined by the project Slab 2.0 and available at the web-page:
 
     https://www.sciencebase.gov/catalog/item/5aa4060de4b0b1c392eaaee2
@@ -60,7 +60,7 @@ The mesh generation will be managed through the configuration set in the file *c
         "mesh_gen": 1,               # 1 means that a new mesh should be generated
     "slab_file": "kur_slab2_dep_02.24.18.xyz",    #name of the Slab 2.0 file
     "seismog_depth": 60,            #Max depth included in the mesh
-    "depth_interpolator": 'v4'      # Algorithm of interpolation between Slab and grid nodes depth. v4 is the suggested but it cannot work if few memory is available. In this case change with "nearest".
+    "depth_interpolator": "v4"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" is the suggested but it could not work depending on MATLAB configuration. In this case change with "nearest"
     "element_size": 12.5e3,         #Average size of mesh face
 
     "Event": {
