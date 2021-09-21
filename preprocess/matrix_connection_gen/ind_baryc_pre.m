@@ -5,6 +5,23 @@ tic
 
 addpath(genpath('../..')); addpath('.');
 
+%% Saving element2element matrix in mat file
+
+disp('Saving Element to Element connection file')
+fid=fopen('param_zone_input.dat');
+fgetl(fid); zone_code=fgetl(fid);
+fclose(fid);
+filename=strcat('EToE_',zone_code,'.mat');
+load('EToE.dat');
+for i=1:size(EToE,1)
+    for j=1:size(EToE,2)
+        if EToE(i,j)==i
+            EToE(i,j)=0;
+        end
+    end
+end
+save(filename,'EToE');
+
 %% Input to be checked for each case
 
 fid=fopen('../../config_files/Parameters/input.json'); %read input from Json file
@@ -86,6 +103,12 @@ Slab.int_dist=int_dist;
 
 filename=strcat('ind_aux_full_',zone_code);
 save(filename,'ind_aux_full');
+delete EToE.dat
+movefile('ETo*.mat','../../config_files/Connection_cell/');
+movefile('*mesh*.inp','../../config_files/Mesh/');
+movefile('*matrix_distance.bin','../../config_files/Matrix_distances/');
+movefile('ind_aux*','../../config_files/Barycenters/');
+movefile('barycenters_all*','../../config_files/Barycenters/');
 
 
                                                  
@@ -107,6 +130,7 @@ N_scaling=Slab.N_scaling; int_dist=Slab.int_dist;
     index_active=Slab.index_active;
     l=0;
     fprintf('Barycenter selection\n')
+    fprintf('This may take several minutes, but you will do only once for each mesh (and scaling law)\n')
     for i=1:length(Magnitude)
             fprintf('Magnitude bin # %d - Mw=%.4f \n',[i Magnitude(i)])
             l=l+1;
