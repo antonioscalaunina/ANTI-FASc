@@ -33,9 +33,9 @@ For some linux distributions it could be necessary to type:
     
 to download all the precomputed configuration files.
 
-Once downloaded the package, you may need to change permission to execute *.sh* files. In the main directory, please type:
+Once downloaded the package, on your personal computer, you may need to change permission to execute *.sh* files. In the main directory, please type:
 
-    sudo chmod -R u+x *.sh
+    sudo chmod -R ugo+x *.sh
 
 The MATLAB modules of the platform can be run either installing a licensed version (MATLAB R2020a or newer) or installing for free a MATLAB Runtime (MATLAB Runtime R2020a or newer).
 The released versions and the instructions for installations of MATLAB-Runtime can be found at: 
