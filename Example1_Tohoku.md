@@ -15,7 +15,10 @@ and git typing:
     
 It could also be useful to install git-lfs:
 
+    sudo apt-get install software-properties-common
+    sudo curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
     sudo apt-get install git-lfs
+    git lfs install
 
 This will allow you to download the whole package of the code, including all the configuration files already computed and distributed in the *config_files/* subdfolders
 
@@ -25,7 +28,7 @@ To donwload the code you can either download the zip archive from the following 
     
 or typing:
 
-    git clone https://github.com/antonioscalaunina/ANTI-FASc.git.
+    git clone https://github.com/antonioscalaunina/ANTI-FASc.git
     
 For some linux distributions it could be necessary to type:
 
