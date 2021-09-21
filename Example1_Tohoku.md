@@ -68,7 +68,7 @@ The mesh generation will be managed through the configuration set in the file *c
         "mesh_gen": 1,               # 1 means that a new mesh should be generated
     "slab_file": "kur_slab2_dep_02.24.18.xyz",    #name of the Slab 2.0 file
     "seismog_depth": 60,            #Max depth included in the mesh
-    "depth_interpolator": "v4"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" is the suggested option but it could not work depending on MATLAB                                           configuration. In this case change with "nearest"
+    "depth_interpolator": "v4"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" is the suggested option but it could not work depending on MATLAB     configuration. In this case change with "nearest"
     "element_size": 12.5e3,         #Average size of mesh face
 
     "Event": {
