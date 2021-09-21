@@ -91,6 +91,10 @@ Alternatively, if you have installed MATLAB runtime, type:
 
     ./run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
+It has been verified that in some Ubuntu versions for the WSL distributions you need to type (also valid for the other MATLAB compiled scripts):
+
+    sh run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
+    
 The second step will create some important configuration files containing the interdistances between all the grid nodes, type the following commands:
 
     cd matrix_connection_gen
