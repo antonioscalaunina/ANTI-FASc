@@ -3,7 +3,7 @@
 In this brief guide we describe the instructions to install all the necessary components to run ANTI-FASc and a practical example.
 All the instructions have been tested on the OS Ubuntu20.04. The procedure consists of 4 phases: Installation, Preprocess, Rupture Areas and Slip Distribution, Postprocess
 
-# 1 - Installation:
+# 1 - Installation
 
 First, if you don't have, please install gfortran typing:
 
