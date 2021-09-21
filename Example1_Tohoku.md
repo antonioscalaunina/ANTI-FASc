@@ -3,7 +3,7 @@
 In this brief guide we describe the instructions to install all the necessary components to run ANTI-FASc and a practical example.
 All the instructions have been tested on the OS Ubuntu20.04. The procedure consists of 4 phases: Installation, Preprocess, Rupture Areas and Slip Distribution, Postprocess
 
-# 1 INSTALLATION:
+# 1 - INSTALLATION:
 
 First, if you don't have, please install gfortran typing:
 
@@ -43,7 +43,7 @@ The released versions and the instructions for installations of MATLAB-Runtime c
     https://www.mathworks.com/products/compiler/matlab-runtime.html
     
     
-# 2 PREPROCESS
+# 2 - PREPROCESS
 
 In this example we generate slip distributions compatible with the estimated magnitude and location of the Mw 9.0 Tohoku earthquake (2011-03-11). 
 In the preprocess part we firstly generate a mesh defined on the Kurils-Japan slab geometry. This has been defined in the framework of the project Slab 2.0 and is available at the web-page:
@@ -107,7 +107,7 @@ Alternatively, with the MATLAB Runtime you can type:
     ./run_ind_baryc_pre.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
 
-# 3 RUPTURE AREAS AND SLIP DISTRIBUTIONS 
+# 3 - RUPTURE AREAS AND SLIP DISTRIBUTIONS 
 
 To start the computation of the rupture areas, in the folder *bin*, run the MATLAB script *Rupture_areas_OF.m*
 
@@ -128,7 +128,7 @@ Finally with the following commands you run the slip distributions computation:
      ./src/bash_scripts/run_homo.sh    # To compute slip distributions with uniform rigidity
      ./src/bash_scripts/run_var.sh     # To compute slip distributions with variable rigidity
      
- # 4 POSTPROCESSING
+ # 4 - POSTPROCESSING
  
  The output will be organized as shown in the following tree:
  
