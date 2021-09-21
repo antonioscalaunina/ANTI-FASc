@@ -128,6 +128,7 @@ Finally with the following commands you run the slip distributions computation:
      cd ../src/k223d/
      make clean
      make
+     mv k223d.x ../../bin
      cd ../..
      ./src/bash_scripts/run_homo.sh    # To compute slip distributions with uniform rigidity
      ./src/bash_scripts/run_var.sh     # To compute slip distributions with variable rigidity
