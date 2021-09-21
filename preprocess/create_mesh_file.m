@@ -5,9 +5,10 @@
 clc
 clear all
 close all
+tic
 
-
-addpath(genpath('..'));
+%addpath(genpath('..'));
+disp('Reading input file');
 fid=fopen('../config_files/Parameters/input.json');
 Zone=read_config_json(fid);
 fclose(fid);
@@ -17,8 +18,12 @@ string1{2}=strcat('cubit(',pwd,'):',date,':');
 nameofslab=Zone.zone_name;
 
 if mesh_from_slab
+    disp("Now I'm meshing (from the file you provided)");
     [Lat,Lon,mesh_default,depth_interp]=mesh_from_Slab(Zone.slab_file,Zone.Merc_zone,...
-                                                      Zone.seismog_depth,Zone.element_size);
+                                        Zone.seismog_depth,Zone.depth_interpolator,Zone.element_size);
+    if isempty(mesh_default)
+        return
+    end
     nodes(:,1)=(1:size(Lat,2));
     nodes(:,2:3)=[Lon' Lat'];
     nodes(:,4)=depth_interp;
@@ -36,6 +41,7 @@ if mesh_from_slab
     movefile(strcat(nameofslab,'_mesh_nodes.dat'),strcat('../utils/sz_slabs/',nameofslab,'/subfaults'));
     movefile(strcat(nameofslab,'_mesh_faces.dat'),strcat('../utils/sz_slabs/',nameofslab,'/subfaults'));
 else
+    disp("Great! You already have nodes and cells, I'm just writing\n")
     if isfile(strcat('../utils/sz_slabs/',nameofslab,'/subfaults/',nameofslab,'_mesh_nodes.dat'))
         nodes=load(strcat(nameofslab,'_mesh_nodes.dat'));
     else
@@ -90,14 +96,28 @@ fprintf(fid,'%s\n',slab_acronym);
 fprintf(fid,'!#### Mercator projection zone\n');
 fprintf(fid,'%d\n',Zone.Merc_zone);
 fclose(fid);
+t=toc;
 return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [Lat,Lon,mesh_default,depth_interp]=mesh_from_Slab(file,Merc,seismog_depth,el_size)
+function [Lat,Lon,mesh_default,depth_interp]=mesh_from_Slab(file,Merc,seismog_depth,depth_int,el_size)
     
 
 file=strcat('../utils/sz_slabs/',file);
-SLAB=importdata(file);
+if (file(end-2:end)=='xyz')
+    SLAB=importdata(file);
+elseif (file(end-2:end)=='grd')
+    x=ncread(file,'x'); y=ncread(file,'y'); z=ncread(file,'z');
+    [Y,X]=meshgrid(y,x);
+    SLAB(:,1)=reshape(X,size(X,1)*size(X,2),1);
+    SLAB(:,2)=reshape(Y,size(Y,1)*size(Y,2),1);
+    SLAB(:,3)=reshape(z,size(z,1)*size(z,2),1);
+else
+    disp('ERROR: Format file not readable. PLEASE CHECK!!!');
+    Lat=[];Lon=[];mesh_default=[];depth_interp=[];
+    return
+end
+disp("Depth interpolation: this may take few minutes"); 
 SLAB=[SLAB(SLAB(:,3)>-seismog_depth,1) SLAB(SLAB(:,3)>-seismog_depth,2) SLAB(SLAB(:,3)>-seismog_depth,3)];
 [SLAB_UTM(:,1),SLAB_UTM(:,2)]=ll2utm(SLAB(:,2),SLAB(:,1),Merc);
 SLAB_boundary=boundary(SLAB(:,1),SLAB(:,2),0.5);
@@ -107,18 +127,18 @@ Polygon=[2 length(SLAB4mesh) X' Y']'; %Japan4mesh(:,1)' Japan4mesh(:,2)']';
 g=decsg(Polygon);
 model=createpde;
 geometryFromEdges(model,g);
-figure
-pdegplot(model) %,'EdgeLabels','on')
-axis equal
+%figure
+%pdegplot(model) %,'EdgeLabels','on')
+%axis equal
 
 mesh_default=generateMesh(model,'Hmax',el_size,'Hmin',el_size,'GeometricOrder','linear','Hgrad',1);
-pdeplot(mesh_default);
+%pdeplot(mesh_default);
 %%
-depth_interp=griddata(SLAB_UTM(:,1),SLAB_UTM(:,2),SLAB(:,3),mesh_default.Nodes(1,:)',mesh_default.Nodes(2,:)');
+depth_interp=griddata(SLAB_UTM(:,1),SLAB_UTM(:,2),SLAB(:,3),mesh_default.Nodes(1,:)',mesh_default.Nodes(2,:)',depth_int);
 depth_interp=1000*depth_interp;
 [Lat,Lon]=utm2ll(mesh_default.Nodes(1,:),mesh_default.Nodes(2,:),Merc);
-figure
-geoscatter(Lat,Lon,50,depth_interp,'filled');
-hold on
-alpha(0.55); geobasemap('streets');
+%figure
+%geoscatter(Lat,Lon,50,depth_interp,'filled');
+%hold on
+%alpha(0.55); geobasemap('streets');
 end
