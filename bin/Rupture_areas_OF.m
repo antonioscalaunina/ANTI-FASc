@@ -91,13 +91,14 @@ switch application
          Zone=Param.zone_name;
          namefolder=strcat(Zone,'_Hazard');
          namefolder_slip=strcat(namefolder,'_slip');
-end
-numb_stoch=Param.Configure.numb_stoch;
+end	 
 fid=fopen('../name_folders_file.dat','w');
 fprintf(fid,'%s',namefolder); fprintf(fid,'\n'); fprintf(fid,'%s',namefolder_slip);
 fprintf(fid,'\n'); fprintf(fid,'%s',zone_code);
-fprintf(fid,'\n'); fprintf(fid,'%d',numb_stoch);
+fprintf(fid,'\n'); fprintf(fid,'%d',Param.Configure.numb_stoch);
+fprintf(fid,'\n'); fprintf(fid,'%d',Param.Configure.variable_mu);
 fclose(fid);
+mkdir(strcat('../',namefolder)); mkdir(strcat('../',namefolder_slip));
 
 %% Magnitude bins and scaling laws (Strasser and Murotani size in km - km^2)
 % SL=load('scaling_laws'); Magnitude=SL(:,1); Slab.Magnitude=Magnitude;
@@ -257,8 +258,24 @@ for i=1:length(index_magnitude)
 end
 
 %% Write Output
-Write_output(Rupturing_areas,Magnitude,index_magnitude,SPDF_all,Name_scaling,Area_cells)
+Write_output(Rupturing_areas,Magnitude,index_magnitude,SPDF_all,Name_scaling,Area_cells,namefolder)
 
+%% generate folder tree for outputs
+cd ..
+cd (namefolder_slip)
+mkdir('homogeneous_mu'); mkdir('variable_mu');
+for i=1:length(index_magnitude)
+    folder_magnitude=sprintf('%6.4f',Magnitude(index_magnitude(i)));
+    folder_magnitude(2)='_';
+    mkdir(strcat('homogeneous_mu/',folder_magnitude));
+    mkdir(strcat('variable_mu/',folder_magnitude));
+    for j=1:length(Name_scaling)
+            mkdir(strcat('homogeneous_mu/',folder_magnitude,'/',Name_scaling{j}));
+            mkdir(strcat('variable_mu/',folder_magnitude,'/',Name_scaling{j}))
+    end
+end
+cd ..
+fclose all;
 t=toc;
 return
 %%
@@ -349,7 +366,7 @@ end
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function Write_output(Rupturing_areas,Magnitude,index_magnitude,SPDF_all,Name_scaling,Area_cells)
+function Write_output(Rupturing_areas,Magnitude,index_magnitude,SPDF_all,Name_scaling,Area_cells,namefolder)
 
     fprintf('Writing Output\n')
 for i=1:length(index_magnitude)
@@ -389,6 +406,7 @@ for i=1:length(index_magnitude)
         cd ..
     end
     cd ..
+    movefile(folder_magnitude,strcat('../',namefolder));
 end
 end
 
