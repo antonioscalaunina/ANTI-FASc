@@ -202,7 +202,7 @@ Finally with the following commands you run the slip distributions computation:
     matlab -nodisplay -nosplash -nodesktop -r "run('slip_distribution_plot_AGI.m'); exit;" 
     
  
-    ./run_slip_distribution_plot.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
+    ./run_slip_distribution_plot_AGI.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
      
 This script will ask which class of scenario (which magnitude and scaling law) you will to plot and will save the *.png* plots in the corresponding *output* folder
     
