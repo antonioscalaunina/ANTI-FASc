@@ -43,11 +43,11 @@ Enter in the preprocess folder
 
 and run from MATLAB command window the script create_mesh_file.m
 
-Of course also in this case you can run it from terminal typing:
+Of course, also in this case, you can run it from terminal typing:
 
     matlab -nodisplay -nosplash -nodesktop -r "run('create_mesh_file.m'); exit;"
 
-or (if you have installed the MATLAB runtime
+or (if you have installed the MATLAB runtime)
 
     ./run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
