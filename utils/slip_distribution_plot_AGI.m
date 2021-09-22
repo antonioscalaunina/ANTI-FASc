@@ -6,7 +6,7 @@ addpath(genpath('..'));
 fid=fopen('../config_files/Parameters/input.json');
 Param=read_config_json(fid); fclose(fid);
 Zone=Param.acronym;
-load(strcat('barycenters_all_',Zone,'.mat'));
+load(strcat('../config_files/Barycenters/barycenters_all_',Zone,'.mat'));
 if (Param.Configure.application=='PTF')
     hypo=Param.Event.Hypo_LonLat;
 end
