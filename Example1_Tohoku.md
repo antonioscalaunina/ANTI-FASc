@@ -197,7 +197,7 @@ Finally with the following commands you run the slip distributions computation:
     142.473907   38.087746   29.206949  142.514374   37.983589   27.932550  142.614288   38.076675   26.574770   90.000000   18.332708
     ..................................................................................................................................
     
- They can be easily plotted by simple personal scripts. In the folder *utils* there is the script *slip_distribution_plot.m*. This script can be run either in the MATLAB command window or with the usual following commands:
+ They can be easily plotted by simple personal scripts. In the folder *utils* there is the script *slip_distribution_plot.m*. As for all the MATLAB script, this one can be run either in the MATLAB command window or with one of the following commands depending:
  
     matlab -nodisplay -nosplash -nodesktop -r "run('slip_dsitribution_plot_AGI.m'); exit;" 
     
