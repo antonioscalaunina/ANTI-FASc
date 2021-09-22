@@ -5,6 +5,7 @@
     "slab_file": "kur_slab2_dep_02.24.18.xyz",
     "seismog_depth": 60,
     "depth_interpolator": "v4",
+    "mesh_convex": 0.5,
     "element_size": 12.5e3,
        	
 "Event": {
