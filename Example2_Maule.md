@@ -7,7 +7,7 @@ From the available files on this repository you can simply change the "main" inp
 
     cd config_files/Parameters
     mv input.json input_Tohoku.json  #to keep the input file for the Tohoku example
-    mv input_Maule.json input.json.
+    mv input_Maule.json input.json
     
 The new *input.json* file will appear as:
 
