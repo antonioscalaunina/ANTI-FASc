@@ -60,7 +60,9 @@ Other slab models can be found at:
     
 ANTI-FASc can work by using both the *_dep*.xyz and the *_dep*.grd file that you can download here. These two files, for this example are already available in the folder *utils/sz_slabs/*
 
-The mesh generation will be managed through the configuration set in the file *config_files/Parameters/input.json* (see comments beside the parameters IN PARTICULA FOR THE PARAMETER "depth_interpolator"):
+The mesh generation will be managed through the configuration set in the file *config_files/Parameters/input.json*.
+
+Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAMETERS "depth_interpolator" and
 
     {"zone_name": "kurilsjapan2",    #Name chosen by the user, arbitrary
         "Merc_zone": 54,             #Mercator Zone
@@ -69,6 +71,7 @@ The mesh generation will be managed through the configuration set in the file *c
     "slab_file": "kur_slab2_dep_02.24.18.xyz",    #name of the Slab 2.0 file
     "seismog_depth": 60,            #Max depth included in the mesh
     "depth_interpolator": "v4"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" is the suggested option but it could not work depending on MATLAB configuration. In this case change with "nearest"
+    "mesh_convex": 0.5              # Mesh convexity: defined in the range [0 1]. 0 convex hull mesh boundary - 1 tightest single-region boundary. Use always values <= 0.5. Sometimes mesh generation might produce error about the non-uniqueness of face ID due to the concavity of mesh boundary: in that case, please slightly decrease "mesh_convex" 
     "element_size": 12.5e3,         #Average size of mesh face
 
     "Event": {
