@@ -103,6 +103,6 @@ Finally as already described in the Example 1 - Tohoku, you can obtain the plots
 
 or:
 
-    ./run_slip_distribution_plot.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
+    ./run_slip_distribution_plot_AGI.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
    
