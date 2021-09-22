@@ -3,14 +3,14 @@ clear all
 close all
 tic
 
-%addpath(genpath('../..')); addpath('.');
+addpath(genpath('../..')); addpath('.');
 
 %% Saving element2element matrix in mat file
 
+fid=fopen('../../config_files/Parameters/input.json'); %read input from Json file
+Param=read_config_json(fid); fclose(fid);
 disp('Saving Element to Element connection file')
-fid=fopen('param_zone_input.dat');
-fgetl(fid); zone_code=fgetl(fid);
-fclose(fid);
+zone_code=Param.acronym;
 filename=strcat('EToE_',zone_code,'.mat');
 load('EToE.dat');
 for i=1:size(EToE,1)
@@ -24,12 +24,11 @@ save(filename,'EToE');
 
 %% Input to be checked for each case
 
-fid=fopen('../../config_files/Parameters/input.json'); %read input from Json file
-Param=read_config_json(fid); fclose(fid);
 
 %Zone='Makran'; % Variable for the folder name
 %zone_code='MaK';  
-zone_code=Param.acronym; Slab.zone_code=zone_code; %Slab 
+%zone_code=Param.acronym; 
+Slab.zone_code=zone_code; %Slab 
 Merc_Zone=Param.Merc_zone;   %sMercator projection zone
 Zone=Param.zone_name;
 Sub_boundary_logic=logical(false);   
