@@ -3,7 +3,7 @@ clear all
 close all
 tic
 
-addpath(genpath('../..')); addpath('.');
+%addpath(genpath('../..')); addpath('.');
 
 %% Saving element2element matrix in mat file
 
@@ -12,7 +12,7 @@ Param=read_config_json(fid); fclose(fid);
 disp('Saving Element to Element connection file')
 zone_code=Param.acronym;
 filename=strcat('EToE_',zone_code,'.mat');
-load('EToE.dat');
+load('./EToE.dat');
 for i=1:size(EToE,1)
     for j=1:size(EToE,2)
         if EToE(i,j)==i
