@@ -3,7 +3,7 @@ clear all
 close all
 tic
 
-addpath(genpath('../..')); addpath('.');
+%addpath(genpath('../..')); addpath('.');
 
 %% Saving element2element matrix in mat file
 
