@@ -51,7 +51,7 @@ or (if you have installed the MATLAB runtime)
 
     ./run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
-The needed files (sam_slab2_dep_02.23.18.xyz or sam_slab2_dep_02.23.18.grd) can be downloaded from the Slab 2.0 website. For this example they are already included in the folder *utils/sz_slabs*
+The needed files (*sam_slab2_dep_02.23.18.xyz* or *sam_slab2_dep_02.23.18.grd*) can be downloaded from the Slab 2.0 website. For this example they are already included in the folder *utils/sz_slabs*
 
 Now:
 
