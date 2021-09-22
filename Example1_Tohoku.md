@@ -197,11 +197,14 @@ Finally with the following commands you run the slip distributions computation:
     142.473907   38.087746   29.206949  142.514374   37.983589   27.932550  142.614288   38.076675   26.574770   90.000000   18.332708
     ..................................................................................................................................
     
- They can be easily plotted by simple personal scripts. In the folder *utils* there is the script *slip_distribution_plot.m*. Running it providing the name of folder in the format:
+ They can be easily plotted by simple personal scripts. In the folder *utils* there is the script *slip_distribution_plot.m*. This script can be run either in the MATLAB command window or with the usual following commands:
  
-     output/*name_folder*_slip/*rigidity*/*magnitude*/*scaling_law*
+    matlab -nodisplay -nosplash -nodesktop -r "run('slip_dsitribution_plot_AGI.m'); exit;" 
+    
+ 
+    ./run_slip_distribution_plot.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
      
-the plot of the slip distributions will be saved in the same output folder. It is worth to clarify that these plots are simplified (and fast) sketches of the slip distributions, that can be promptly used to verify that the process led to accetable results.
+This script will ask which class of scenario (which magnitude and scaling law) you will to plot and will save the *.png* plots in the corresponding *output* folder
     
 
 
