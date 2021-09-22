@@ -20,7 +20,8 @@ nameofslab=Zone.zone_name;
 if mesh_from_slab
     disp("Now I'm meshing (from the file you provided)");
     [Lat,Lon,mesh_default,depth_interp]=mesh_from_Slab(Zone.slab_file,Zone.Merc_zone,...
-                                        Zone.seismog_depth,Zone.depth_interpolator,Zone.element_size);
+                                        Zone.seismog_depth,Zone.depth_interpolator,...
+                                        Zone.mesh_convex,Zone.element_size);
     if isempty(mesh_default)
         return
     end
@@ -100,7 +101,8 @@ t=toc;
 return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [Lat,Lon,mesh_default,depth_interp]=mesh_from_Slab(file,Merc,seismog_depth,depth_int,el_size)
+function [Lat,Lon,mesh_default,depth_interp]=...
+    mesh_from_Slab(file,Merc,seismog_depth,depth_int,convex,el_size)
     
 
 file=strcat('../utils/sz_slabs/',file);
@@ -119,26 +121,35 @@ else
 end
 disp("Depth interpolation: this may take few minutes"); 
 SLAB=[SLAB(SLAB(:,3)>-seismog_depth,1) SLAB(SLAB(:,3)>-seismog_depth,2) SLAB(SLAB(:,3)>-seismog_depth,3)];
-[SLAB_UTM(:,1),SLAB_UTM(:,2)]=ll2utm(SLAB(:,2),SLAB(:,1),Merc);
-SLAB_boundary=boundary(SLAB(:,1),SLAB(:,2),0.5);
+[SLAB_UTM(:,1),SLAB_UTM(:,2),zone_utm]=ll2utm(SLAB(:,2),SLAB(:,1),Merc);
+if length(zone_utm)==length(SLAB_UTM(:,2))
+   SLAB_UTM(zone_utm<0,2)=SLAB_UTM(zone_utm<0,2)-max(SLAB_UTM(:,2))-1;
+end
+clear zone_utm
+SLAB_boundary=boundary(SLAB(:,1),SLAB(:,2),convex);
 SLAB4mesh=SLAB(SLAB_boundary,:);
-[X,Y]=ll2utm(SLAB4mesh(:,2),SLAB4mesh(:,1),Merc);
+[X,Y,zone_utm]=ll2utm(SLAB4mesh(:,2),SLAB4mesh(:,1),Merc);
+if length(zone_utm)==length(X)
+   Y(zone_utm<0)=Y(zone_utm<0)-max(Y)-1;
+end
+
 Polygon=[2 length(SLAB4mesh) X' Y']'; %Japan4mesh(:,1)' Japan4mesh(:,2)']';
 g=decsg(Polygon);
 model=createpde;
 geometryFromEdges(model,g);
-%figure
-%pdegplot(model) %,'EdgeLabels','on')
-%axis equal
-
-mesh_default=generateMesh(model,'Hmax',el_size,'Hmin',el_size,'GeometricOrder','linear','Hgrad',1);
+% figure
+% pdegplot(model) %,'EdgeLabels','on')
+% axis equal
+%Lat=[];Lon=[];mesh_default=[];depth_interp=[];
+%return
+mesh_default=generateMesh(model,'Hmax',2*el_size,'Hmin',el_size,'GeometricOrder','linear','Hgrad',1.);
 %pdeplot(mesh_default);
 %%
 depth_interp=griddata(SLAB_UTM(:,1),SLAB_UTM(:,2),SLAB(:,3),mesh_default.Nodes(1,:)',mesh_default.Nodes(2,:)',depth_int);
 depth_interp=1000*depth_interp;
 [Lat,Lon]=utm2ll(mesh_default.Nodes(1,:),mesh_default.Nodes(2,:),Merc);
-%figure
-%geoscatter(Lat,Lon,50,depth_interp,'filled');
-%hold on
-%alpha(0.55); geobasemap('streets');
+% figure
+% geoscatter(Lat,Lon,50,depth_interp,'filled');
+% hold on
+% alpha(0.55); geobasemap('streets');
 end
