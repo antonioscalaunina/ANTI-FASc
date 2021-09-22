@@ -142,7 +142,7 @@ geometryFromEdges(model,g);
 % axis equal
 %Lat=[];Lon=[];mesh_default=[];depth_interp=[];
 %return
-mesh_default=generateMesh(model,'Hmax',2*el_size,'Hmin',el_size,'GeometricOrder','linear','Hgrad',1.);
+mesh_default=generateMesh(model,'Hmax',el_size,'Hmin',el_size,'GeometricOrder','linear','Hgrad',1.);
 %pdeplot(mesh_default);
 %%
 depth_interp=griddata(SLAB_UTM(:,1),SLAB_UTM(:,2),SLAB(:,3),mesh_default.Nodes(1,:)',mesh_default.Nodes(2,:)',depth_int);
