@@ -20,7 +20,7 @@ The software is composed by three modules
          
    - PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake
 
-3 - k223d - k-square slip distributions to 3D fault planes
+3 - k223d - k-square slip distributions to 3D fault planes (Herrero & Murphy 2018)
 
    Computation of ensembles of stochastic k-square slip distributions for all the previously selected areas also accounting for other conditions (e.g. homogeneous or variable rigidity, surface slip amplification)
 
