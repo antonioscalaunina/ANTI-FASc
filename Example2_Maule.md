@@ -133,15 +133,16 @@ Changing some of the settings in the file *config_files/Parameters/input.json* a
      "Hypo_LonLat" : [-72.71, -35.85],
      "Magnitude" : 8.8
      },
+     ..................................
      
 you can run the whole procedure skipping the mesh generation. Please take into account that you have to run also the *create_mesh_file.m* step. In this configuration the script only writes the precomputed mesh in the right format:
  
 Basically, in the *input.json* file you should:
 1 - choose a zone name between the folder names above
 2 - impose the corresponding Merc Zone (suggestions for the precomputed mesh are in the file *config_files/slab_database*)
-3 - choose a three letter acronym (possible different from the analogous example with mesh generation to avoid to overwrite the configuration files
+3 - choose a three letter acronym (possible different from the analogous example with mesh generation to avoid to overwrite the configuration files)
 4 - impose the mesh_gen to 0
-5 - Impose a different Event.Name (to not overwrite the final output folder.
+5 - Impose a different Event.Name (to not overwrite the final output folder).
 
 
     
