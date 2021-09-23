@@ -66,7 +66,7 @@ Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAM
 
     {"zone_name": "kurilsjapan2",    #Name chosen by the user, arbitrary
         "Merc_zone": 54,             #Mercator Zone
-    "acronym": "KJ2",                #Acronym - it will be used to generate and use all the configuration files all the process long
+    "acronym": "KJ2",                #Acronym (THREE DIGITS!) - it will be used to generate and use all the configuration files all the process long
         "mesh_gen": 1,               # 1 means that a new mesh should be generated
     "slab_file": "kur_slab2_dep_02.24.18.xyz",    #name of the Slab 2.0 file
     "seismog_depth": 60,            #Max depth included in the mesh
