@@ -2,6 +2,8 @@
 
 The second example will generate slip distributions based on the location and magnitude of the M8.8 Maule earthquake occurred on the south-american slab on the 2010-02-27.
 
+At the end of this example other two similar tests are presented. In these tests the mesh generation is skipped and the precomputed meshes (obtained through the use of the software Cubit.
+
 The procedure is very similar to the previous example and you only need to change some of the settings in the *config_files/Parameters/input.json* file.
 From the available files on this repository you can simply change the "main" input file as follow:
 
@@ -9,7 +11,7 @@ From the available files on this repository you can simply change the "main" inp
     mv input.json input_Tohoku.json  #to keep the input file for the Tohoku example
     mv input_Maule.json input.json
     
-The new *input.json* file will appear as:
+The new *input.json* file will appear as (check the meaning of the parameters in the example 1:
 
     {"zone_name": "southamerica2",
         "Merc_zone": 18,
@@ -105,4 +107,42 @@ or:
 
     ./run_slip_distribution_plot_AGI.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
-   
+# 5 - Use of available mesh dataset
+
+In the folder *utils/sz_slabs/* a database of precomputed mesh is available:
+
+    alaskaaleutians   hjort                 manokwari         outerrise_kermadectonga  sangihe             timor
+    arutrough         izumariana            manus             outerrise_puysegur       sangihe_backthrust  timortrough
+    banda_detachment  japan                 mexico            outerrisenewhebrides     se_sulawesi         tolo_thrust
+    calabrian         kermadectonga2        moresby_trough    outerrisesolomon         seram_thrust        trobriand
+    cascadia          kurils                mussau            outerrisesunda           seramsouth
+    cyprus            kurilsjapan           newguinea2        philippine               solomon2
+    flores            macquarieislandnorth  newhebrides2      puysegur2                southamerica
+    floreswetar       macquarienorth        north_sulawesi    ryuku                    sunda2
+    hellenic          makran2               outer_rise_timor  sandwich                 tanimbar
+    
+Changing the first lines of settings in the file *config_files/Parameters/input.json* as follows:
+
+    {"zone_name": "southamerica",
+        "Merc_zone": 18,
+        "acronym": "SA1",
+        "mesh_gen": 0,
+     ...........................
+     "Event": {
+     "Name": "Maule_other_mesh",
+     "Hypo_LonLat" : [-72.71, -35.85],
+     "Magnitude" : 8.8
+     },
+     
+ You can run the whole procedure skipping the mesh generation. Please take into account that you have to run also the *create_mesh_file.m* step, that only will write the precomputed mesh in the right format:
+ 
+Basically in the *input.json* file you should
+1 - choose a zone name between the folder names above
+2 - impose the corresponding Merc Zone (suggestions for the precomputed mesh are in the file *config_files/slab_database*)
+3 - choose a three letter acronym (possible different from the analogous example with mesh generation to avoid to overwrite the configuration files
+4 - impose the mesh_gen to 0
+5 - Impose a different Event.Name (to not overwrite the final output folder.
+
+
+    
+  
