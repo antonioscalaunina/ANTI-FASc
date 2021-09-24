@@ -55,8 +55,9 @@ for j=1:length(list)
         set(gca,'FontSize',12,'FontWeight','bold');
         geoscatter(mean(input(:,[2 5 8])'),mean(input(:,[1 4 7])'),150,slip,'s','filled');
         hold on
-        geolimits([min(input(:,2))-1 max(input(:,2))+1], ...
-            [min(input(:,1)) max(input(:,1))])
+        gap=max(input)-min(input);
+        geolimits([min(input(:,2))-gap(2) max(input(:,2))+gap(2)], ...
+            [min(input(:,1))-gap(1) max(input(:,1))+gap(1)])
         if (Param.Configure.application=='PTF')
             geoplot(hypo(2),hypo(1),'kp','MarkerSize',15,'MarkerFaceColor','y');
         end
