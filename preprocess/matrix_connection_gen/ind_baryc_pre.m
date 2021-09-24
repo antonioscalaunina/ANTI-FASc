@@ -135,7 +135,7 @@ N_scaling=Slab.N_scaling; int_dist=Slab.int_dist; elem_size=Slab.elem_size;
             fprintf('Magnitude bin # %d - Mw=%.4f \n',[i Magnitude(i)])
             l=l+1;
             for j=1:N_scaling
-                if (isempty(index_active{i,j}) | int_dist*Length_aux(i,j)<elem_size/2)
+                if (isempty(index_active{i,j}) | int_dist*Length_aux(i,j)<0.5*elem_size/1e3)
                     barycenter{l,j}=index_active{i,j}';
                 else
                     barycenter{l,j}(1)=index_active{i,j}(1);
