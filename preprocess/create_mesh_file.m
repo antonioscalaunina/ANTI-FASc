@@ -133,7 +133,7 @@ if length(zone_utm)==length(X)
    Y(zone_utm<0)=Y(zone_utm<0)-max(Y)-1;
 end
 
-Polygon=[2 length(SLAB4mesh) X' Y']'; %Japan4mesh(:,1)' Japan4mesh(:,2)']';
+Polygon=[2 length(SLAB4mesh)-1 X(1:end-1)' Y(1:end-1)']'; %Japan4mesh(:,1)' Japan4mesh(:,2)']';
 g=decsg(Polygon);
 model=createpde;
 geometryFromEdges(model,g);
