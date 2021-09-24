@@ -3,7 +3,7 @@ clear all
 close all
 tic
 
-%addpath(genpath('../..')); addpath('.');
+addpath(genpath('../..')); addpath('.');
 
 %% Saving element2element matrix in mat file
 
@@ -38,7 +38,7 @@ end
 Slab.Sub_boundary_logic=Sub_boundary_logic;         % logical: if the rupture can extend only on a part of the mesh          
 %% Magnitude bins and scaling laws (Strasser and Murotani size in km - km^2)
 % SL=load('scaling_laws'); Magnitude=SL(:,1); Slab.Magnitude=Magnitude;
-fid=fopen('scaling_relationship.json');
+fid=fopen('../../config_files/Parameters/scaling_relationship.json');
 Scaling=read_config_json(fid); fclose(fid);
 
 N_Magn_bins=Scaling.Magnitude_bins.number_bins;
@@ -78,12 +78,13 @@ end
 %% Active barycenters for the whole subduction and selection of barycenters for case-study or hazard
 min_bnd_dist=Param.Configure.minimum_bnd_distance;
 int_dist=Param.Configure.minimum_interdistance;
+elem_size=Param.element_size;
 
 fprintf('Computing distances from the slab boundary\n');
 [p0,distanceJB]=compute_distance2fault2D(bnd_mesh(:,:),barycenters_all(:,:),Sub_boundary_logic,Merc_Zone,0);
 for i=1:length(Magnitude)
     for j=1:N_scaling % 1 Murotani - 2 Strasser
-        index_active{i,j}=find(distanceJB>min(75.,min_bnd_dist*Width_aux(i,j)));
+        index_active{i,j}=find(distanceJB>min(elem_size*5/1.e3,min_bnd_dist*Width_aux(i,j)));
     end
 end
 Slab.index_active=index_active;
@@ -92,7 +93,7 @@ fprintf('Done\n');
 Slab.AreaSL=Area_aux; Slab.WidthSL=Width_aux; Slab.LengthSL=Length_aux; 
 %Slab.index_magnitude=index_magnitude;  
 Slab.nodes=nodes; Slab.cells=cells; Slab.barycenters_all=barycenters_all;
-Slab.int_dist=int_dist;
+Slab.int_dist=int_dist; Slab.elem_size=elem_size;
 
 [ind_aux_full]=select_barycenter2(Slab);   % use select_barycenter2 for adaptive 
                                                  % barycenter sampling with
@@ -124,7 +125,7 @@ function [ind_aux]=select_barycenter2(Slab)
 barycenters_all=Slab.barycenters_all;
 Length_aux=Slab.LengthSL; Magnitude=Slab.Magnitude;
 
-N_scaling=Slab.N_scaling; int_dist=Slab.int_dist; 
+N_scaling=Slab.N_scaling; int_dist=Slab.int_dist; elem_size=Slab.elem_size;
 
     index_active=Slab.index_active;
     l=0;
@@ -134,7 +135,7 @@ N_scaling=Slab.N_scaling; int_dist=Slab.int_dist;
             fprintf('Magnitude bin # %d - Mw=%.4f \n',[i Magnitude(i)])
             l=l+1;
             for j=1:N_scaling
-                if (isempty(index_active{i,j}) | int_dist*Length_aux(i,j)<5.)
+                if (isempty(index_active{i,j}) | int_dist*Length_aux(i,j)<elem_size/2)
                     barycenter{l,j}=index_active{i,j}';
                 else
                     barycenter{l,j}(1)=index_active{i,j}(1);
