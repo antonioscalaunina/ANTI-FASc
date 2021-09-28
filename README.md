@@ -8,7 +8,7 @@ The software is composed by three modules
     
    - A mesh generator 
     
-   - The computation (through the lateration algorithm of k223d, see Herrero and Murphy 2018, GJI) of a matrix containing all the interdistances among nodes for the computed mesh
+   - The computation (through the use of the code k223d https://github.com/s-murfy/k223d, see Herrero and Murphy 2018, GJI) of a matrix containing all the interdistances among nodes for the computed mesh
     
    - The computation of a grid of rupture barycenters optimised to minimize the repetition of similar rupture areas during the nex stage. This grid depends on magnitude binning and prescribed scaling law(s)
 
@@ -20,7 +20,7 @@ The software is composed by three modules
          
    - PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake
 
-3 - k223d - k-square slip distributions to 3D fault planes (Herrero & Murphy 2018)
+3 - k223d (https://github.com/s-murfy/k223d) - k-square slip distributions to 3D fault planes (Herrero & Murphy 2018)
 
    Computation of ensembles of stochastic k-square slip distributions for all the previously selected areas also accounting for other conditions (e.g. homogeneous or variable rigidity, surface slip amplification)
 
