@@ -58,7 +58,7 @@ Other slab models can be found at:
     https://www.sciencebase.gov/catalog/item/5aa1b00ee4b0b1c392e86467
     
     
-ANTI-FASc mesh genarator can work by using both the *_dep*.xyz and the *_dep*.grd file that you can download here. These two files, for this example are already available in the folder *utils/sz_slabs/*
+ANTI-FASc mesh generator can work by using both the *_dep*.xyz and the *_dep*.grd file that you can download here. These two files, for this example are already available in the folder *utils/sz_slabs/*
 
 The mesh generation will be managed through the configuration set in the file *config_files/Parameters/input.json*.
 
