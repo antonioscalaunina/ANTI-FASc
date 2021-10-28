@@ -2,7 +2,7 @@
 
 ANTI-FASc, acronym for Automatic Numerical Tsunami Initial conditions: on-the-Fly rupture Areas and earthquake Scenarios, is a software enabling the fast computation of large ensembles of slip distributions on complex non-planar fault interfaces (Maesano et al. 2017, Sci. Rep.; Tonini et al. 2021, GJI) such as the subducting plates. These slip models can be promptly used as initial conditions for the computation of tsunami scenarios in the framework of both Seismic-Probabilistic Tsunami Harzard Assessment (see Scala et al. 2020 PAGEOPH - Basili et al. 2021 Frontiers) and for real-time Probabilisitic Tsunami Forecasting (see Selva et al. 2021 Nature in press).
 
-The software is composed by three modules
+The software is composed by three modules + a simple postprocessing tool
 
 1- Preprocess module including:
     
@@ -29,6 +29,9 @@ The software is composed by three modules
    Computation of ensembles of stochastic k-square slip distributions for all the previously selected areas also accounting for other conditions (e.g. homogeneous or variable rigidity, surface slip amplification)
   
 **More details about the k223d module and its original sources can be found in the file *src/k223d/README.md*. The use of this module is shown in the examples in the main folder**.
+
+
+Finally, the repository contains a simple postprocessing tool allowing to visualize some of the computed distributions through *.png* plots
 
 
 Along with the codes it has been provided a large dataset of precomputed meshes and the related rupture barycenters selections optimised for an assigned magnitude binning and considering the scaling relationship proposed by Strasser et al. (2010, SRL) and Murotani et al. (2013, SRL)
