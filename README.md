@@ -24,11 +24,11 @@ More details about the preprocess modules can be found in the file *preprocess/R
 
 More details about the preprocess modules can be found in the file *bin/README.md* and in the examples presented in the main folder
 
-3 - k223d k-square slip distributions to 3D fault planes (Herrero & Murphy 2018, GJI)
+3 - k223d k-square slip distributions to 3D fault planes (Herrero & Murphy 2018, GJI):
 
    Computation of ensembles of stochastic k-square slip distributions for all the previously selected areas also accounting for other conditions (e.g. homogeneous or variable rigidity, surface slip amplification)
   
-More details about the k223d module and its original sources can be found in the file *src/k223d/README.md*. The use of this module is shown in the examples in the main folder
+\b More details about the k223d module and its original sources can be found in the file *src/k223d/README.md*. The use of this module is shown in the examples in the main folder \b
 
 
 Along with the codes it has been provided a large dataset of precomputed meshes and the related rupture barycenters selections optimised for an assigned magnitude binning and considering the scaling relationship proposed by Strasser et al. (2010, SRL) and Murotani et al. (2013, SRL)
