@@ -44,14 +44,14 @@ if mesh_from_slab
 else
     disp("Great! You already have nodes and cells, I'm just writing\n")
     if isfile(strcat('../utils/sz_slabs/',nameofslab,'/subfaults/',nameofslab,'_mesh_nodes.dat'))
-        nodes=load(strcat(nameofslab,'_mesh_nodes.dat'));
+        nodes=load(strcat('../utils/sz_slabs/',nameofslab,'/subfaults/',nameofslab,'_mesh_nodes.dat'));
     else
         disp('ERROR: Nodes file not in the sz database. Please check the name of slab');
         return
     end
     nodes((nodes(:,2)>180),2)=nodes((nodes(:,2)>180),2)-360;
     if isfile(strcat('../utils/sz_slabs/',nameofslab,'/subfaults/',nameofslab,'_mesh_faces.dat'))
-        cells=load(strcat(nameofslab,'_mesh_faces.dat'));
+        cells=load(strcat('../utils/sz_slabs/',nameofslab,'/subfaults/',nameofslab,'_mesh_faces.dat'));
     else
         disp('ERROR: Faces file not in the sz database. Please check the name of slab');
         return
@@ -98,6 +98,20 @@ fprintf(fid,'!#### Mercator projection zone\n');
 fprintf(fid,'%d\n',Zone.Merc_zone);
 fclose(fid);
 t=toc;
+
+disp('Saving Element to Element connection file')
+%EToE=Element2Element(cells(:,2:4));
+EToE=tiConnect2D(cells(:,2:4));
+filename=strcat('matrix_connection_gen/EToE_',slab_acronym,'.mat');
+save(filename,'EToE');
+
+disp('Creating Matrix of the distance')
+Matrix_distance=matrix_distance_nolat(nodes(:,2:4));
+fid=fopen(strcat('matrix_connection_gen/',slab_acronym,'_matrix_distance.bin'),'w');
+fwrite(fid,Matrix_distance,'float');
+fclose(fid);
+disp('Everything concerning the mesh is done')
+
 return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,4 +166,74 @@ depth_interp=1000*depth_interp;
 % geoscatter(Lat,Lon,50,depth_interp,'filled');
 % hold on
 % alpha(0.55); geobasemap('streets');
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function[EToE,t]=Element2Element(cells)
+%% Generate face list
+tic
+
+Nodes2Face=zeros(size(cells,1)*size(cells,2),2);
+
+for i=1:size(cells,1);
+    Nodes2Face((i-1)*3+1,:)=sort(cells(i,[1 2])); 
+    Nodes2Face((i-1)*3+2,:)=sort(cells(i,[2 3]));
+    Nodes2Face((i-1)*3+3,:)=sort(cells(i,[3 1])); 
+end
+%% Generate couple of common faces
+k=1;
+for i=1:size(Nodes2Face,1)
+    [~,row,col]=intersect(Nodes2Face(i,:),Nodes2Face([1:i-1 i+1:end],:),'rows');
+    if ~isempty(row)
+        if i<=col
+            col=col+1;
+        end
+        Couple_face(k,:)=[i col];
+        k=k+1;
+    end
+    clear row col
+end
+
+%% Extract Element2Element matrix
+EToE=zeros(size(cells));
+upd=textprogressbar(size(Couple_face,1));
+for i=1:size(Couple_face,1)
+    upd(i);
+    p(1)=mod(Couple_face(i,1),3);
+    if p(1)==0
+        index(1)=Couple_face(i,1)/3;
+        p(1)=3;
+    elseif p(1)==1
+        index(1)=int16(Couple_face(i,1)/3)+1;
+    else
+        index(1)=int16(Couple_face(i,1)/3);
+    end
+    p(2)=mod(Couple_face(i,2),3);
+    if p(2)==0
+        index(2)=Couple_face(i,2)/3;
+    elseif p(2)==1
+        index(2)=int16(Couple_face(i,2)/3)+1;
+    else
+        index(2)=int16(Couple_face(i,2)/3);
+    end
+    EToE(index(1),p(1))=index(2);
+    clear p index
+end
+t=toc;
+
+
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function matrix_distance=matrix_distance_nolat(nodes)
+matrix_distance=zeros(length(nodes));
+
+upd=textprogressbar(size(nodes,1));
+for i=1:size(nodes,1)
+    upd(i);
+    for j=(i+1):size(nodes,1)
+        distance_wh=dist_wh([nodes(i,2) nodes(j,2)],[nodes(i,1) nodes(j,1)]);
+        matrix_distance(i,j)=sqrt(distance_wh^2+(nodes(j,3)-nodes(i,3))^2);
+        matrix_distance(j,i)=matrix_distance(i,j);
+    end
+end
 end
