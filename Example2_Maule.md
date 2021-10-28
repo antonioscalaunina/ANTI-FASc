@@ -57,13 +57,6 @@ The needed files (*sam_slab2_dep_02.23.18.xyz* or *sam_slab2_dep_02.23.18.grd*) 
 
 Now:
 
-    cd matrix_connection_gen
-    make clean
-    make
-    ./input_conn.x
-    
-and finally run the script *ind_baryc_pre.m*
-
     matlab -nodisplay -nosplash -nodesktop -r "run('ind_baryc_pre.m'); exit;"
     
 or:
