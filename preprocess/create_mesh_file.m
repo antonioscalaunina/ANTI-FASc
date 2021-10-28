@@ -7,7 +7,7 @@ clear all
 close all
 tic
 
-%addpath(genpath('..'));
+addpath(genpath('..'));
 disp('Reading input file');
 fid=fopen('../config_files/Parameters/input.json');
 Zone=read_config_json(fid);
