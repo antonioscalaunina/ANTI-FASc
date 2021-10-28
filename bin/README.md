@@ -5,7 +5,7 @@ The nodule can work in two modes:
 
  - Hazard: it computes all the possible different rupture areas (according to the previous barycenters selection) in the prescribed magnitude bins
 
- - PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake
+ - PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake. In this mode, the limit can be either fixed by the user (imposing a range around the estimated magnitude and location) or defining rupture areas for the magnitude and rupture barycenters selection contained in the output file of the matPTF code (see repository *https://github.com/INGV/matPTF*) 
 
 It can be run either launching the MATLAB script *Rupture_areas_OF.m*, e.g. from a linux terminal typing the command:
 
@@ -17,4 +17,7 @@ or, alternatively, by using the compiled standalone executable as follows:
     
 This code import input information from several configuration files. The files *Parameters/input.json* and *Parameters/scaling_relationship.json* must be set by the user. The input files in the folders *Barycenters*, *Connection_cell*, *Mesh* and *Matrix_distances* must be computed in the preprocess module (for more details about these files see the examples in the main folder)
 
+This module also makes use:
 
+the scripts utm2ll.m and ll2utm.m available at https://it.mathworks.com/matlabcentral/fileexchange/45699-ll2utm-and-utm2ll. These scripts are redistributed in this distribution along with their copyright and licence notice. (See within the folder src/Rupture_areas/)
+the script dist_wh.m available in the github repository Beamform at https://github.com/lsxinh/Beamform/blob/master/dist_wh.m
