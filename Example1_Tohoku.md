@@ -38,6 +38,7 @@ to download all the precomputed configuration files.
 
 Once downloaded the package, on your personal computer and within the main folder, you may need to give all the permissions to read and execute all the files. Please type:
 
+    cd ANTI-FASc
     sudo chmod -R ugo+rwx *
 
 The MATLAB modules of the platform can be run either installing a licensed version (MATLAB R2020a or newer) or installing for free a MATLAB Runtime (MATLAB Runtime R2020a or newer).
