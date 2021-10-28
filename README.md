@@ -12,7 +12,7 @@ The software is composed by three modules
     
    - The computation of a grid of rupture barycenters optimised to minimize the repetition of similar rupture areas during the nex stage. This grid depends on magnitude binning and prescribed scaling law(s)
 
-More details about the preprocess modules can be found in the file preprocess/preprocess_readme.md
+More details about the preprocess modules can be found in the file *preprocess/README.md* and in the examples presented in the main folder.
 
 2 - Rupture areas computation:
     
@@ -21,6 +21,8 @@ More details about the preprocess modules can be found in the file preprocess/pr
    - Hazard: it computes all the possible different rupture areas (according to the previous barycenters selection) in the prescribed magnitude bins
          
    - PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake
+
+More details about the preprocess modules can be found in the file *bin/README.md* and in the examples presented in the examples presented in the main folder
 
 3 - k223d (https://github.com/s-murfy/k223d) - k-square slip distributions to 3D fault planes (Herrero & Murphy 2018)
 
