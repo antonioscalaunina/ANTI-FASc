@@ -14,7 +14,8 @@ This module also makes use:
 
  - the module utm_geo from the repository *specfem3d* available at: *https://github.com/geodynamics/specfem3d/blob/master/src/shared/utm_geo.f90*.
 
- - 
+ - A Fortran version of the script tiConnect_2D.m available in the github repository nodal_dg at https://github.com/tcew/nodal-dg/tree/master/Codes1.1/Codes2D/tiConnect2D.m. This script is redistributed in this distribution along with its copyright and licence notice (see in the folder *preprocess*).
+
 BIBILIOGRAPHY
 
 Selva, J., Lorito, S., Volpe, M. et al. (2021). Probabilistic tsunami forecasting for early warning. Nat Commun 12, 5677 (2021). DOI: 10.1038/s41467-021-25815-w
