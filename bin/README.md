@@ -5,7 +5,7 @@ The nodule can work in two modes:
 
  - Hazard: it computes all the possible different rupture areas (according to the previous barycenters selection) in the prescribed magnitude bins
 
- - PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake. In this mode, the limit can be either fixed by the user (imposing a range around the estimated magnitude and location) or defining rupture areas for the magnitude and rupture barycenters selection contained in the output file of the matPTF code (see repository *https://github.com/INGV/matPTF*) 
+ - PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake. In this case the user must set a range around the estimated magnitude and location. The module also allows to use a precompiled selection of magnitude and rupture areas computed through the software matPT available at *https://github.com/INGV/matPTF* (Selva et al. 2021) 
 
 It can be run either launching the MATLAB script *Rupture_areas_OF.m*, e.g. from a linux terminal typing the command:
 
