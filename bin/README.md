@@ -19,8 +19,8 @@ This code import input information from several configuration files. The files *
 
 This module also makes use:
 
-the scripts utm2ll.m and ll2utm.m available at https://it.mathworks.com/matlabcentral/fileexchange/45699-ll2utm-and-utm2ll. These scripts are redistributed in this distribution along with their copyright and licence notice. (See within the folder src/Rupture_areas/)
-the script dist_wh.m available in the github repository Beamform at https://github.com/lsxinh/Beamform/blob/master/dist_wh.m
+ - the scripts utm2ll.m and ll2utm.m available at https://it.mathworks.com/matlabcentral/fileexchange/45699-ll2utm-and-utm2ll. These scripts are redistributed in this distribution along with their copyright and licence notice. (See within the folder src/Rupture_areas/)
+ - the script dist_wh.m available in the github repository Beamform at https://github.com/lsxinh/Beamform/blob/master/dist_wh.m
 
 BIBILIOGRAPHY
 
