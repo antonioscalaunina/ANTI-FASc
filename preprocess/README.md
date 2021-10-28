@@ -13,7 +13,7 @@ For more details about the installation and use of MATLAB Runtime refer to the w
     https://www.mathworks.com/products/compiler/matlab-runtime.html
     
     
- - A rupture barycenters selection: it performs an optimised selection of the rupture areas barycenter based on the magnitude and geometry size expected from the prescribed scaling law. This selection will minimize in the rupture areas computation the number of rupture areas with high level of similarity. It can be run changing the folder
+  - A rupture barycenters selection: it performs an optimised selection of the rupture areas barycenter based on the magnitude and geometry size expected from the prescribed scaling law. This selection will minimize in the rupture areas computation the number of rupture areas with high level of similarity. It can be run changing the folder
 
     cd barycenter_selection
     
