@@ -15,4 +15,4 @@ or, alternatively, by using the compiled standalone executable as follows:
 
     ./run_Rupture_areas_OF.sh /usr/local/MATLAB/MATLAB_Runtime/v99/     #If you have installed MATLAB Runtime
     
-This code import input information from several configuration files. The files *Parameters/input.json* and *Parameters/scaling_relationship.json* must be set by the user (See the examples described in main folder). The input files in the folders *Barycenters*, *Connection_cell*, *Mesh/**.inp* and *Matrix_distances* are defined 
+This code import input information from several configuration files. The files *Parameters/input.json* and *Parameters/scaling_relationship.json* must be set by the user. The input files in the folders *Barycenters*, *Connection_cell*, *Mesh* and *Matrix_distances* are defined in the preprocess part (for more details about these files see the examples in the main folder)
