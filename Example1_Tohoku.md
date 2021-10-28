@@ -107,16 +107,13 @@ It has been verified that in some Ubuntu versions for the WSL distributions you 
 
     sh run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
-The second step will create some needed configuration files such as the matrix of the grid nodes interdistance. Please type the following commands:
-
-    cd matrix_connection_gen
-    make clean
-    make
-    ./input_conn.x
+The second step will generate a selection of rupture barycenters having a fixed minimum interdistance. This distance is optimised to avoid to have too much similar rupture areas, in particular for large magnitude values. This selection is based on the magnitude binning and the selected scaling laws that are set in the file *config_files/Parameters/scaling_relationships.json*. In this example we use a selection similar to that one proposed in the framework of the project TSUMAPS-NEAM (see Basili et al. 2021) using the Strasser et al. (2010) and the Murotani et al.(2013) scaling relationships. After changing directory: 
     
-Finally the last script will generate a selection of rupture barycenters having a fixed minimum interdistance. This distance is optimised to avoid to have too much similar rupture areas, in particular for large magnitude values. This selection is based on the magnitude binning and the selected scaling laws that are set in the file *config_files/Parameters/scaling_relationships.json*. In this example we use a selection similar to that one proposed in the framework of the project TSUMAPS-NEAM (see Basili et al. 2021) using the Strasser et al. (2010) and the Murotani et al.(2013) scaling relationships. You can either run this part from the MATLAB interface with the script *ind_baryc_pre.m* or typing:
-
-     matlab -nodisplay -nosplash -nodesktop -r "run('ind_baryc_pre.m'); exit;"
+    cd barycenter_selection
+    
+You can either run this part from the MATLAB interface with the script *ind_baryc_pre.m* or typing:
+    
+    matlab -nodisplay -nosplash -nodesktop -r "run('ind_baryc_pre.m'); exit;"
      
 Alternatively, with the MATLAB Runtime you can type:
 
