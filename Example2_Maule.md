@@ -2,7 +2,7 @@
 
 The second example will generate slip distributions based on the location and magnitude of the M8.8 Maule earthquake occurred on the south-american slab on the 2010-02-27.
 
-At the end of this example other two similar tests are presented. In these tests the mesh generation is skipped and the precomputed meshes (obtained through the use of the software Cubit.
+At the end of this example other two similar tests are presented. In these tests the mesh generation is skipped and the precomputed meshes are used.
 
 The procedure is very similar to the previous example and you only need to change some of the settings in the *config_files/Parameters/input.json* file.
 From the available files on this repository you can simply change the "main" input file as follow:
