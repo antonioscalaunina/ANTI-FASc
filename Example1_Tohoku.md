@@ -88,7 +88,7 @@ Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAM
     "Magnitude_ub": 0.15,
     "hypo_baryc_distance": 1.0,          # Rupture barycenters at less than 1 Length (inferred from scaling law for each Magnitude bin) form hypocenter will be accounted
 
-
+For this example the file *kur_slab2_dep_02.24.18.xyz* available at the web-site of the project Slab 2.0 (*https://www.sciencebase.gov/catalog/item/5aa4060de4b0b1c392eaaee2*) is also available in the folder *utils/sz_slabs*
 To start the preprocess run, move into the preprocess folder:
 
     cd preprocess
