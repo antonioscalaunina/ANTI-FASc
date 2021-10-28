@@ -8,8 +8,8 @@ The procedure is very similar to the previous example and you only need to chang
 From the available files on this repository you can simply change the "main" input file as follow:
 
     cd config_files/Parameters
-    mv input.json input_Tohoku.json  #to keep the input file for the Tohoku example
-    mv input_Maule.json input.json
+    cp input.json input_Tohoku.json  #to keep the input file for the Tohoku example
+    cp input_Maule.json input.json
     
 The new *input.json* file will appear as (check the meaning of the parameters in the example 1:
 
