@@ -31,10 +31,22 @@ The software is composed by three modules + a simple postprocessing tool
 **More details about the k223d module and its original sources can be found in the file *src/k223d/README.md*. The use of this module is shown in the examples in the main folder**.
 
 
-Finally, the repository contains a simple postprocessing tool allowing to visualize some of the computed distributions through *.png* plots
+Finally, the repository contains a simple postprocessing tool allowing to visualize some of the computed distributions through *.png* plots. To run it:
+
+    cd utils
+    
+and:
+
+    matlab -nodisplay -nosplash -nodesktop -r "run('slip_distribution_plot_AGI.m'); exit;"  #if you have a licensed version of MATLAB
+    
+or:
+
+    ./run_slip_distribution_plot_AGI.sh /usr/local/MATLAB/MATLAB_Runtime/v99/     #if you have installe MATLAB Runtime
+    
+This script will ask in which folder you want to plot the computed distributions and save the plot files in the same output folder. More details in the examples.
 
 
-Along with the codes it has been provided a large dataset of precomputed meshes and the related rupture barycenters selections optimised for an assigned magnitude binning and considering the scaling relationship proposed by Strasser et al. (2010, SRL) and Murotani et al. (2013, SRL)
+Along with the codes it has been provided a large dataset of precomputed meshes in the folder *utils/sz_slabs
 
 
 
