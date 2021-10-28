@@ -1,5 +1,6 @@
-The module named *K223d* generates for each rupture area computed in the *Rupture_areas_OF* module a prescribed number of k2 stochastic slip distributions according to prescribed magnitude-size scaling, starting from a barycenter selection over the selected fault surface.
-It can either use the precomputed barycenter selection from the preprocess module *ind_baryc_pre.m* or define this selection on-the-fly during the run. This latter mode, however, significantly enlarge the computational time.
+The module named *k223d* generates for each rupture area computed in the *Rupture_areas_OF* module a prescribed number of k2 stochastic slip distributions.
+
+This module is based on the code k223d available at https://github.com/s-murfy/k223d. The composite source model technique there implemented is in turn based on the slipk2 code available at: https://github.com/and.herit/slipk2.
 
 The nodule can work in two modes:
 
