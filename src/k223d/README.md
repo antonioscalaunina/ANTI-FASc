@@ -18,4 +18,4 @@ This module also makes use:
 
 BIBILIOGRAPHY
 
-Selva, J., Lorito, S., Volpe, M. et al. (2021). Probabilistic tsunami forecasting for early warning. Nat Commun 12, 5677 (2021). DOI: 10.1038/s41467-021-25815-w
+Herrero and Murphy (2018), Self-similar slip distributions on irregular shaped faults, Geophysical Journal International, DOI: 10.1093/gji/ggy104
