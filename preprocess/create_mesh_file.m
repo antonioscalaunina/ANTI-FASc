@@ -62,12 +62,12 @@ end
 % disp('WARNING: Please check in the folder utils/sz_slab the right name of the folder slab');
 % nameofslab=input('Please enter the name of the slab (in the form "nameslab") \n\n');
 % disp('WARNING: Choose a three digits acronym then update the file utils/Table_slabs.dat with your choice');
-% disp('WARNING: Remember to change this acronym in the file /preprocess/matrix_connection_gen/param_zone_input.dat');
+% disp('WARNING: Remember to change this acronym in the file /preprocess/barycenter_selection/param_zone_input.dat');
 % disp('         along with the right mercator zone');
 % disp('WARNING: The same acronym will be used later in the execution of Rupture_areas_OF.m')
 % slab_acronym=input('Please digit an acronym for the slab (in the form "AaA") \n\n');
 slab_acronym=Zone.acronym;
-namefile=strcat('matrix_connection_gen/',slab_acronym,'_mesh_15km.inp');
+namefile=strcat('barycenter_selection/',slab_acronym,'_mesh_15km.inp');
 
 fid=fopen(namefile,'w');
 
@@ -91,7 +91,7 @@ end
 
 fclose(fid);
 
-fid=fopen('matrix_connection_gen/param_zone_input.dat','w');
+fid=fopen('barycenter_selection/param_zone_input.dat','w');
 fprintf(fid,'!### Geo zone (Three digit acronym)\n');
 fprintf(fid,'%s\n',slab_acronym);
 fprintf(fid,'!#### Mercator projection zone\n');
@@ -102,12 +102,12 @@ t=toc;
 disp('Saving Element to Element connection file')
 %EToE=Element2Element(cells(:,2:4));
 EToE=tiConnect2D(cells(:,2:4));
-filename=strcat('matrix_connection_gen/EToE_',slab_acronym,'.mat');
+filename=strcat('barycenter_selection/EToE_',slab_acronym,'.mat');
 save(filename,'EToE');
 
 disp('Creating Matrix of the distance')
 Matrix_distance=matrix_distance_nolat(nodes(:,2:4));
-fid=fopen(strcat('matrix_connection_gen/',slab_acronym,'_matrix_distance.bin'),'w');
+fid=fopen(strcat('barycenter_selection/',slab_acronym,'_matrix_distance.bin'),'w');
 fwrite(fid,Matrix_distance,'float');
 fclose(fid);
 disp('Everything concerning the mesh is done')
