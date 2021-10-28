@@ -31,5 +31,5 @@ The two described scripts import input information from the files *config_files/
 These scripts also make use:
  - the script *textprogressbar.m* available at *https://it.mathworks.com/matlabcentral/fileexchange/55285-textprogressbar*. This script is redistributed in this distribution along with its copyright and licence notice.
  - the scripts *utm2ll.m* and *ll2utm.m* available at *https://it.mathworks.com/matlabcentral/fileexchange/45699-ll2utm-and-utm2ll*. These scripts are redistributed in this distribution along with their copyright and licence notice. (See within the folder *src/Rupture_areas/*)
- - the script *dist_wh.m* available in the github repository *Beamform* at *https://github.com/lsxinh/Beamform/dist_wh*
- - the script *tiConnect_2D.m* available in the github repository *nodal_dg* at *https://github.com/tcew/nodal-dg/tree/master/Codes1.1/Codes2D/tiConnect_2D.m*. This script is redistributed in this distribution along with its copyright and licence notice.
+ - the script *dist_wh.m* available in the github repository *Beamform* at *https://github.com/lsxinh/Beamform/dist_wh.m*
+ - the script *tiConnect_2D.m* available in the github repository *nodal_dg* at *https://github.com/tcew/nodal-dg/tree/master/Codes1.1/Codes2D/tiConnect2D.m*. This script is redistributed in this distribution along with its copyright and licence notice.
