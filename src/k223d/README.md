@@ -1,22 +1,14 @@
 The module named *k223d* generates for each rupture area computed in the *Rupture_areas_OF* module a prescribed number of k2 stochastic slip distributions.
 
-This module is based on the code k223d available at https://github.com/s-murfy/k223d. The composite source model technique there implemented is in turn based on the slipk2 code available at: https://github.com/andherit/slipk2.
+This module is based on the code k223d available at *https://github.com/s-murfy/k223d*. The composite source model technique there implemented is in turn based on the slipk2 code available at: *https://github.com/andherit/slipk2*. The distributed module also contains the software computing the distances over non-regular mesh surfaces thourgh a double-lateration scheme. The kernel of this software distributed in the github repository *https://github.com/andherit/trilateration* and described in the papers Herrero & Murphy (2018, GJI). The input configurations are read through the use of the module *forparse* avaialable at the github repository *https://github.com/andherit/forparse*
 
-The nodule can work in two modes:
+In this repository, the software *k223d* has been modified to:
 
- - Hazard: it computes all the possible different rupture areas (according to the previous barycenters selection) in the prescribed magnitude bins
+ - Compute set of *n* stochastic slip distributions over precomptued rupture areas, and using precomputed inter-nodes distances
+ 
+ - Compute slip distributions accounting for a variable rigidity across the mesh
 
- - PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake. In this case the user must set a range around the estimated magnitude and location. The module also allows to use a precompiled selection of magnitude and rupture areas computed through the software matPT available at *https://github.com/INGV/matPTF* (Selva et al. 2021) 
-
-It can be run either launching the MATLAB script *Rupture_areas_OF.m*, e.g. from a linux terminal typing the command:
-
-    matlab -nodisplay -nosplash -nodesktop -r "run('Rupture_areas_OF.m'); exit;"    # if you have a licensed version of MATLAB
-    
-or, alternatively, by using the compiled standalone executable as follows:
-
-    ./run_Rupture_areas_OF.sh /usr/local/MATLAB/MATLAB_Runtime/v99/     #If you have installed MATLAB Runtime
-    
-This code import input information from several configuration files. The files *Parameters/input.json* and *Parameters/scaling_relationship.json* must be set by the user. The input files in the folders *Barycenters*, *Connection_cell*, *Mesh* and *Matrix_distances* must be computed in the preprocess module (for more details about these files see the examples in the main folder)
+ - Write output files in the standard format of initial conditions for tsunami wave propagation simulator such as Tsunami-HySeA (see as reference *https://edanya.uma.es/hysea/index.php/models/tsunami-hysea*
 
 This module also makes use:
 
