@@ -8,13 +8,13 @@ In this repository, the software *k223d* has been modified to:
  
  - Compute slip distributions accounting for a variable rigidity across the mesh
 
- - Write output files in the standard format of initial conditions for tsunami wave propagation simulator such as Tsunami-HySeA (see as reference *https://edanya.uma.es/hysea/index.php/models/tsunami-hysea*
+ - Write output files in the standard format of initial conditions for tsunami wave propagation simulator such as Tsunami-HySeA (see as reference *https://edanya.uma.es/hysea/index.php/models/tsunami-hysea*)
 
 This module also makes use:
 
- - the scripts utm2ll.m and ll2utm.m available at https://it.mathworks.com/matlabcentral/fileexchange/45699-ll2utm-and-utm2ll. These scripts are redistributed in this distribution along with their copyright and licence notice. (See within the folder src/Rupture_areas/)
- - the script dist_wh.m available in the github repository Beamform at https://github.com/lsxinh/Beamform/blob/master/dist_wh.m
+ - the module utm_geo from the repository *specfem3d* available at: *https://github.com/geodynamics/specfem3d/blob/master/src/shared/utm_geo.f90*.
 
+ - 
 BIBILIOGRAPHY
 
 Selva, J., Lorito, S., Volpe, M. et al. (2021). Probabilistic tsunami forecasting for early warning. Nat Commun 12, 5677 (2021). DOI: 10.1038/s41467-021-25815-w
