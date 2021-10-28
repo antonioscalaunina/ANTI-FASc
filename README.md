@@ -46,7 +46,15 @@ or:
 This script will ask in which folder you want to plot the computed distributions and save the plot files in the same output folder. More details in the examples.
 
 
-Along with the codes it has been provided a large dataset of precomputed meshes in the folder *utils/sz_slabs
+Along with the codes it has been provided a large dataset of precomputed meshes in the folder *utils/sz_slabs*. These meshes has been computed either from the geometrical modelling provided by the project Slab 2.0 (see available geometry at the web-page https://www.sciencebase.gov/catalog/item/5aa1b00ee4b0b1c392e86467) or from the modelling proposed by the Geoscience Australia (available at: *https://github.com/GeoscienceAustralia/ptha*). The Mediterranean slab models are the same used in the framework of TSUMAPS-NEAM project (see *http://www.tsumaps-neam.eu/*, see also Maesano et al. 2017, Basili et al. 2021)
+
+ACKNOWLEDGEMENTS
+
+A special thanks to Stefano Lorito, Fabrizio Romano, Manuela Volpe, Hafize Basak Bayraktar, Jacopo Selva, Gaetano Festa and Antonio Giovanni Iaccarino for participating at the different phases of conceiving, revising, developing and testing of the current version of the platform.
+
+Thanks to Roberto Basili, Francesco Emanuele Maesano, Mara Monica Tiberti and Gareth Davies for their precious contribution in the definition of the slabs database distributed along with this platform
+
+Thanks to Shane Murphy and Andre Herrero for their valuable contribution in developing and training to use the softwares used in the third module of the platform  
 
 
 
