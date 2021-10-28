@@ -1,4 +1,4 @@
-The *Rupture_areas_OF* generates rupture areas, according to prescribed magnitude-size scaling, starting from a barycenter selection over the selected fault surface.
+The module named *Rupture_areas_OF* generates rupture areas, according to prescribed magnitude-size scaling, starting from a barycenter selection over the selected fault surface.
 It can either use the precomputed barycenter selection from the preprocess module *ind_baryc_pre.m* or define this selection on-the-fly during the run. This latter procedure, however, significantly enlarge the computational time.
 
 It can work in two modes:
