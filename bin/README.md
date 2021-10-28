@@ -6,3 +6,13 @@ It can work in two modes:
  - Hazard: it computes all the possible different rupture areas (according to the previous barycenters selection) in the prescribed magnitude bins
 
  - PTF: it computes all the scenarios “compatible” with estimation and uncertainty of magnitude and location for a given earthquake
+
+It can be run either launching the MATLAB script *Rupture_areas_OF.m*, e.g., from a linux terminal typing the command:
+
+    matlab -nodisplay -nosplash -nodesktop -r "run('Rupture_areas_OF.m'); exit;"    # if you have a licensed version of MATLAB
+    
+or, alternatively, by using the compiled standalone executable as follows:
+
+    ./run_Rupture_areas_OF.sh /usr/local/MATLAB/MATLAB_Runtime/v99/     #If you have installed MATLAB Runtime
+    
+This code import input information from several configuration files. The files *Parameters/input.json* and *Parameters/scaling_relationship.json* must be set by the user (See the examples described in main folder). The input files in the folders *Barycenters*, *Connection_cell*, *Mesh/**.inp* and *Matrix_distances* are defined 
