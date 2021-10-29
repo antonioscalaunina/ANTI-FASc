@@ -54,7 +54,7 @@ A special thanks to Stefano Lorito, Fabrizio Romano, Manuela Volpe, Hafize Basak
 
 Thanks to Roberto Basili, Francesco Emanuele Maesano, Mara Monica Tiberti and Gareth Davies for their precious contribution in the definition of the slabs database distributed along with this platform
 
-Thanks to Shane Murphy and Andre Herrero for their valuable contribution in developing and training to use the softwares used in the third module of the platform  
+Thanks to Shane Murphy and Andre Herrero for their valuable contribution in developing and training to use the softwares composing the third module of the platform  
 
 
 
