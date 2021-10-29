@@ -52,7 +52,7 @@ ACKNOWLEDGEMENTS
 
 A special thanks to Stefano Lorito, Fabrizio Romano, Manuela Volpe, Hafize Basak Bayraktar, Jacopo Selva, Gaetano Festa and Antonio Giovanni Iaccarino for participating at the different phases of conceiving, revising, developing and testing of the current version of the platform.
 
-Thanks to Roberto Basili, Francesco Emanuele Maesano, Mara Monica Tiberti and Gareth Davies for their precious contribution in the definition of the slabs database distributed along with this platform
+Thanks to Roberto Basili, Francesco Emanuele Maesano, Mara Monica Tiberti and Gareth Davies for their precious contribution in providing detailed geometrical models for some of the slabs included in the database distributed along with this platform.
 
 Thanks to Shane Murphy and Andre Herrero for their valuable contribution in developing and training to use the softwares composing the third module of the platform  
 
