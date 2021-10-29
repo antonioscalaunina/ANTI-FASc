@@ -4,7 +4,7 @@ This module is based on the code k223d available at *https://github.com/s-murfy/
 
 In this repository, the software *k223d* has been modified to:
 
- - Compute set of *n* stochastic slip distributions over precomptued rupture areas, and using precomputed inter-nodes distances
+ - Compute sets of *n* stochastic slip distributions over precomptued rupture areas, and using precomputed inter-nodes distances.
  
  - Compute slip distributions accounting for a variable rigidity across the mesh
 
