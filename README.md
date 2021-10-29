@@ -28,7 +28,7 @@ The software is composed by three modules + a simple postprocessing tool
 
    Computation of ensembles of stochastic k-square slip distributions for all the previously selected areas also accounting for other conditions (e.g. homogeneous or variable rigidity, surface slip amplification)
   
-**More details about the k223d module and its original sources can be found in the file *src/k223d/README.md*. The use of this module is shown in the examples in the main folder**.
+**More details about the k223d module and its original sources can be found in the file *src/k223d/README.md* (*https://github.com/antonioscalaunina/ANTI-FASc/blob/main/src/k223d/README.md*). The use of this module is shown in the examples in the main folder**.
 
 
 Finally, the repository contains a simple postprocessing tool allowing to visualize some of the computed distributions through *.png* plots. To run it:
