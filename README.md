@@ -10,7 +10,7 @@ The software is composed by three modules + a simple postprocessing tool
     
    - The computation of a matrix containing all the interdistances among nodes for the computed mesh
     
-   - The computation of a grid of rupture barycenters optimised to minimize the repetition of similar rupture areas during the nex stage. This grid depends on magnitude binning and prescribed scaling law(s)
+   - The computation of a grid of rupture barycenters optimised to minimize the repetition of similar rupture areas during the next stages. This grid depends on magnitude binning and prescribed scaling law(s)
 
 **More details about the preprocess modules can be found in the file *preprocess/README.md* and in the examples presented in the main folder**.
 
