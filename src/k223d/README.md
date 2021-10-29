@@ -8,7 +8,7 @@ In this repository, the software *k223d* has been modified to:
  
  - Compute slip distributions accounting for a variable rigidity across the mesh
 
- - Write output files in the standard format of initial conditions for tsunami wave propagation simulator such as Tsunami-HySeA (see as reference *https://edanya.uma.es/hysea/index.php/models/tsunami-hysea*)
+ - Write output files in the standard format of initial conditions for tsunami wave propagation simulators such as Tsunami-HySeA (see as reference *https://edanya.uma.es/hysea/index.php/models/tsunami-hysea*)
 
 This module also makes use:
 
