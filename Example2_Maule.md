@@ -56,6 +56,8 @@ or (if you have installed the MATLAB runtime)
 The needed files (*sam_slab2_dep_02.23.18.xyz* or *sam_slab2_dep_02.23.18.grd*) can be downloaded from the Slab 2.0 website. For this example they are already included in the folder *utils/sz_slabs*
 
 Now:
+    
+    cd barycenter_selection 
 
     matlab -nodisplay -nosplash -nodesktop -r "run('ind_baryc_pre.m'); exit;"
     
