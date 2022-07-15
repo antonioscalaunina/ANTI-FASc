@@ -1,13 +1,13 @@
 clc
 clear all
-close all
+%close all
 
 addpath(genpath('..'));
 fid=fopen('../config_files/Parameters/input.json');
 Param=read_config_json(fid); fclose(fid);
 Zone=Param.acronym;
 %load(strcat('../config_files/Barycenters/barycenters_all_',Zone,'.mat'));
-if (Param.Configure.application=='PTF')
+if (strcmp(Param.Configure.application,'PTF'))
     hypo=Param.Event.Hypo_LonLat;
 end
 %output/*name_folder*_slip/*rigidity*/*magnitude*/*scaling_law*
@@ -61,7 +61,7 @@ for j=1:length(list)
         gap=max(input)-min(input);
         geolimits([min(input(:,2))-0.25*gap(2) max(input(:,2))+0.25*gap(2)], ...
             [min(input(:,1))-0.25*gap(1) max(input(:,1))+0.25*gap(1)])
-        if (Param.Configure.application=='PTF')
+        if (strcmp(Param.Configure.application,'PTF'))
             geoplot(hypo(2),hypo(1),'kp','MarkerSize',15,'MarkerFaceColor','y');
         end
         geobasemap('topographic')

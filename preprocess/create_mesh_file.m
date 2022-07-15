@@ -13,7 +13,7 @@ fid=fopen('../config_files/Parameters/input.json');
 Zone=read_config_json(fid);
 fclose(fid);
 mesh_from_slab=Zone.mesh_gen;
-load('string1.mat'); load('string2.mat'); load('string3.mat');
+load('../utils/string1.mat'); load('../utils/string2.mat'); load('../utils/string3.mat');
 string1{2}=strcat('cubit(',pwd,'):',date,':');
 nameofslab=Zone.zone_name;
 
@@ -236,4 +236,10 @@ for i=1:size(nodes,1)
         matrix_distance(j,i)=matrix_distance(i,j);
     end
 end
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function Struct=read_config_json(fid)
+raw=fread(fid);
+str=char(raw');
+Struct=jsondecode(str);
 end
