@@ -1,10 +1,10 @@
 clc
 clear all
-close all
+%close all
 tic
 
 %addpath('C:\Users\ascal\Documents\MATLAB')
-%addpath(genpath('..')); addpath('.');
+addpath(genpath('..')); addpath('.');
 
 %% Input to be checked for each case
 % Considered non-parameterized alternatives:
@@ -166,7 +166,10 @@ if Slab.Sub_boundary_logic
     name_bnd=strcat('../config_files/Mesh/',zone_code,'_boundary.txt');
     mesh_subbnd=readtable(name_bnd);
     bnd_mesh=[mesh_subbnd(:,1).Variables mesh_subbnd(:,2).Variables ,mesh_subbnd(:,3).Variables];
+    bnd_mesh(bnd_mesh(:,1)<0,1)=bnd_mesh(bnd_mesh(:,1)<0,1)+360;
 else
+    nodes_plus=nodes;
+    nodes_plus(nodes(:,1)<0,1)=nodes(nodes(:,1)<0,1)+360;
     bnd=boundary(nodes(:,1),nodes(:,2),1); 
     bnd_mesh=nodes(bnd,:);
 end
@@ -178,7 +181,7 @@ if Stress_drop_logic
         exponent=(gamma1(1,j)+gamma2(1,j));
         exponent=exponent/(gamma1(1,j)*V1+gamma2(1,j)*V2-gamma1(1,j)-gamma2(1,j));
         [mu_all,mu_BL,mu_bal]=Assign_rigidity(-1e-3*barycenters_all(:,3),Fact_rigidity,exponent);
-        Slab.fact_mu_z(j,:)=mu_bal./mu_BL; %factor to be used to balance stress drop through L/W and Area
+        Slab.fact_mu_z(j,:)=mu_all./mu_BL; %factor to be used to balance stress drop through L/W and Area
         clear mu_BL V1 V2
     end
 else
@@ -307,7 +310,7 @@ for i=1:length(depth)
             mu_BL(i) = rigidity_PREM(i);
         end
     else
-        mu(i) = Fact_mu*(mu(i) + rigidity_PREM(i));
+        mu(i) = mu(i) + Fact_mu*(rigidity_PREM(i)-mu(i));
     end
     %clear rigidity_PREM
 end

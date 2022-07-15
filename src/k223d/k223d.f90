@@ -122,6 +122,21 @@ if (amesh%QuakeElemNo<13*amesh%rmin) then    ! generate non-stochastic distribut
     slip_aux=slip_aux/amesh%mu
     close(110)
     amesh%index_string(ii)(7:9)='000'
+    !!! WRITE Slip4cells files for linear combinations
+    ! file_out='Slip4cells_' // trim(amesh%index_string(ii)) // '.dat'
+     !file_out=trim(file_out)
+    ! open(12,file=file_out,form='formatted')
+    ! if (amesh%Ncells<1000) write(string_aux,"(I3)") amesh%Ncells
+    ! if (amesh%Ncells>=1000 .and. amesh%Ncells<10000) write(string_aux,"(I4)") amesh%Ncells
+    ! if (amesh%Ncells>=10000 .and. amesh%Ncells<100000) write(string_aux,"(I5)") amesh%Ncells
+    ! string_aux='"(' // trim(string_aux) // 'F10.6)"'
+    ! do i=1,amesh%Ncells
+    ! write(12,"(F10.6)") (slipout(i))
+    ! end do
+     !1000 format (<amesh%Ncells>F10.6)
+    ! call flush(12)
+    ! close(12)
+    !!! END OF Slip4Cells files writing 
     file_out='Slip4HySea' // trim(amesh%index_string(ii)) // '.dat'
     file_out=trim(file_out)
     open(15,file=file_out,form='formatted')
@@ -235,16 +250,17 @@ amesh%slip = slipout
   !call flush(11)
   !close(11)
  
-  !file_out='Slip4cells_' // trim(amesh%index_string(ii)) // '.dat'
-  !file_out=trim(file_out)
-  !open(12,file=file_out,form='formatted')
-  !if (amesh%Ncells<1000) write(string_aux,"(I3)") amesh%Ncells
-  !if (amesh%Ncells>=1000 .and. amesh%Ncells<10000) write(string_aux,"(I4)") amesh%Ncells
-  !if (amesh%Ncells>=10000 .and. amesh%Ncells<100000) write(string_aux,"(I5)") amesh%Ncells    
-   !string_aux='"(' // trim(string_aux) // 'F10.6)"'
-  !write(12,"(F10.6)") (slipout(i), i=1,amesh%Ncells)
+ ! file_out='Slip4cells_' // trim(amesh%index_string(ii)) // '.dat'
+ ! file_out=trim(file_out)
+ ! open(12,file=file_out,form='formatted')
+ ! if (amesh%Ncells<1000) write(string_aux,"(I3)") amesh%Ncells
+ ! if (amesh%Ncells>=1000 .and. amesh%Ncells<10000) write(string_aux,"(I4)") amesh%Ncells
+ ! if (amesh%Ncells>=10000 .and. amesh%Ncells<100000) write(string_aux,"(I5)") amesh%Ncells    
+ !  string_aux='"(' // trim(string_aux) // 'F10.6)"'
+ ! write(12,"(F10.6)") (slipout(i), i=0,amesh%Ncells-1)
   !1000 format (<amesh%Ncells>F10.6)
-  !close(12)
+ ! call flush(12)
+ ! close(12)
   file_out='Slip4HySea' // trim(amesh%index_string(ii)) // '.dat'
   file_out=trim(file_out)
   open(15,file=file_out,form='formatted')

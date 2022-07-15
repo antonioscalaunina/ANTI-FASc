@@ -61,8 +61,11 @@ if Slab.Sub_boundary_logic
     name_bnd=strcat('../../config_files/Mesh/',zone_code,'_boundary.txt');
     mesh_subbnd=readtable(name_bnd);
     bnd_mesh=[mesh_subbnd(:,1).Variables mesh_subbnd(:,2).Variables ,mesh_subbnd(:,3).Variables];
+    bnd_mesh(bnd_mesh(:,1)<0,1)=bnd_mesh(bnd_mesh(:,1)<0,1)+360;
 else
-    bnd=boundary(nodes(:,1),nodes(:,2),1); 
+    nodes_plus=nodes;
+    nodes_plus(nodes(:,1)<0,1)=nodes(nodes(:,1)<0,1)+360;
+    bnd=boundary(nodes_plus(:,1),nodes_plus(:,2),1); 
     bnd_mesh=nodes(bnd,:);
 end
 %% Active barycenters for the whole subduction and selection of barycenters for case-study or hazard
@@ -79,7 +82,7 @@ for i=1:length(Magnitude)
 end
 Slab.index_active=index_active;
 fprintf('Done\n');
-    
+
 Slab.AreaSL=Area_aux; Slab.WidthSL=Width_aux; Slab.LengthSL=Length_aux; 
 %Slab.index_magnitude=index_magnitude;  
 Slab.nodes=nodes; Slab.cells=cells; Slab.barycenters_all=barycenters_all;
@@ -120,7 +123,7 @@ N_scaling=Slab.N_scaling; int_dist=Slab.int_dist; elem_size=Slab.elem_size;
     index_active=Slab.index_active;
     l=0;
     fprintf('Barycenter selection\n')
-    fprintf('This may take several minutes, but you will do only once for each mesh (and scaling law)\n')
+    fprintf('This may take several minutes, but you will do only once for each mesh (and scaling laws selection)\n')
     for i=1:length(Magnitude)
             fprintf('Magnitude bin # %d - Mw=%.4f \n',[i Magnitude(i)])
             l=l+1;
@@ -164,4 +167,71 @@ Barycenters(Barycenters(:,1)>180,1)=Barycenters(Barycenters(:,1)>180,1)-360;
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function Struct=read_config_json(fid)
+raw=fread(fid);
+str=char(raw');
+Struct=jsondecode(str);
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [nodes,cells,string1,string2,string3] = read_mesh_file(fid)
+% Read file mesh in the variable fid in inp format providing as nodes
+% (Lon-Lat-Depth) and the cells (node indices of the vertices)
+% the 
+
+for i=1:9
+    fgetl(fid);
+end
+
+for i=1:100000
+    line=fgetl(fid);
+    if line(1)=='*'
+        numb_nodes=i-1;
+        break
+    end
+end
+
+for i=1:2
+    fgetl(fid);
+end
+
+for i=1:100000
+    line=fgetl(fid);
+    if line(1)=='*'
+        numb_cells=i-1;
+        break
+    end
+end
+
+frewind(fid);
+nodes=zeros(numb_nodes,3); cells=zeros(numb_cells,3);
+
+for i=1:9
+    string1{i}=fgetl(fid);
+end
+
+for i=1:numb_nodes
+    line=fgetl(fid);
+    temp=str2num(line);
+    ind_nod(i)=i;
+    nodes(i,:)=temp(2:4);
+end
+
+for i=1:3
+    string2{i}=fgetl(fid);
+end
+
+for i=1:numb_cells
+    line=fgetl(fid);
+    temp=str2num(line);
+    ind_cell(i)=i;
+    cells(i,:)=int16(temp(2:4));
+end
+
+if nargout>2
+    for i=1:44
+        string3{i}=fgetl(fid);
+    end
+end
+end
 
