@@ -1,7 +1,7 @@
-{"zone_name": "kermadectonga2", 
-	"Merc_zone": 1,
-    "acronym": "KeT",
-	"mesh_gen": 0,
+{"zone_name": "kurilsjapan2", 
+	"Merc_zone": 54,
+    "acronym": "KJ2",
+	"mesh_gen": 1,
     "slab_file": "kur_slab2_dep_02.24.18.xyz",
     "seismog_depth": 60,
     "depth_interpolator": "v4",
@@ -9,14 +9,14 @@
     "element_size": 12.5e3,
        	
 "Event": {
-"Name": "KT1_MZ2",
-"Hypo_LonLat" : [-174.12, -20.19],
-"Magnitude" : 8.0
+"Name": "Tohoku",
+"Hypo_LonLat" : [142.369, 38.322],
+"Magnitude" : 9.0
 },
 "Configure": {
 "application": "PTF",
 "shape": "Rectangle",
-"numb_stoch": 5,
+"numb_stoch": 10,
 "variable_mu": 0,
 "mesh_sub_boundary": 0,
 "preprocess": 1,
