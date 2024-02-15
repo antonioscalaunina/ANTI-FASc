@@ -102,6 +102,9 @@ or:
     
 # 5 - Use of available mesh dataset
 
+To use the available dataset you must download the complete repository that is available only at the following DOI: https://zenodo.org/doi/10.5281/zenodo.10625118.
+Within this repository, all the available meshes (config_files/Mesh) and connection matrices (config_files/Matrix_distances) can be downloaded.
+
 In the folder *utils/sz_slabs/* a database of precomputed mesh is available:
 
     alaskaaleutians   hjort                 manokwari         outerrise_kermadectonga  sangihe             timor
