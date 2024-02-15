@@ -2,7 +2,7 @@
 
 ANTI-FASc, acronym for Automatic Numerical Tsunami Initial conditions: on-the-Fly rupture Areas and earthquake Scenarios, is a software enabling the fast computation of large ensembles of slip distributions on complex non-planar fault interfaces (Maesano et al. 2017, Sci. Rep.; Tonini et al. 2021, GJI) such as the subducting plates. These slip models can be promptly used as initial conditions for the computation of tsunami scenarios in the framework of both Seismic-Probabilistic Tsunami Harzard Assessment (see Scala et al. 2020 PAGEOPH - Basili et al. 2021 Frontiers) and for real-time Probabilisitic Tsunami Forecasting (see Selva et al. 2021 Nature). A release of the version v1.0.1 is available at the following DOI: *https://zenodo.org/doi/10.5281/zenodo.7101459*
 
-A wiki documentation (currently under construction) is available at the following link https://github.com/antonioscalaunina/ANTI-FASc/wiki
+
 
 The software is composed by three modules + a simple postprocessing tool
 
