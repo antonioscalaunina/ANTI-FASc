@@ -17,7 +17,7 @@
 "application": "PTF",
 "shape": "Rectangle",
 "numb_stoch": 10,
-"variable_mu": 0,
+"variable_mu": 1,
 "mesh_sub_boundary": 0,
 "preprocess": 1,
 "file_baryc": 0,
@@ -29,7 +29,7 @@
 "hypo_baryc_distance": 1.0,
 "Fact_area_scaling": 1,
 "Stress_drop_var": 0,
-"Fact_rigidity": 0.75
+"Fact_rigidity": 0.5
 }
 }
  
