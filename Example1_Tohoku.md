@@ -63,6 +63,10 @@ ANTI-FASc mesh generator can work by using both the *_dep*.xyz and the *_dep*.gr
 
 The mesh generation will be managed through the configuration set in the file *config_files/Parameters/input.json*.
 
+To use the predefined *input.json* file for Tohoku example, within the folde *config_files/Parameters* type:
+    
+    cp input_Tohoku.json input.json 
+
 Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAMETERS "depth_interpolator" and "mesh_convex"
 
     {"zone_name": "kurilsjapan2",    #Name chosen by the user, arbitrary
