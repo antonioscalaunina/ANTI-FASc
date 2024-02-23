@@ -4,7 +4,7 @@ clearvars
 tic
 
 %addpath('C:\Users\ascal\Documents\MATLAB')
-%addpath(genpath('..')); addpath('.');
+addpath(genpath('..')); addpath('.');
 
 %% Input to be checked for each case
 % Considered non-parameterized alternatives:
@@ -43,6 +43,7 @@ Rigidity_file_logic=logical(false);
 if Param.Configure.Rigidity_file_logic==1
     Rigidity_file_logic=logical(true);
     Rigidity_file=Param.Configure.Rigidity_file;
+    Slab.Rigidity_file=Rigidity_file;
 end
 if Param.Configure.preprocess==1
     Preprocess_logic=logical(true); % true: the active barycenters are already in preprocessing file
@@ -61,7 +62,7 @@ Slab.Sub_boundary_logic=Sub_boundary_logic;         % logical: if the rupture ca
 Slab.Stress_drop_logic=Stress_drop_logic;           % logical: if the stress drop varies with depth
 
 Slab.Rigidity_file_logic=Rigidity_file_logic;       % logical: if file with a prescribed depth variation of rigidity is given
-Slab.Rigidity_file=Rigidity_file;                   % Name of the file containing the rigidity variation with depth
+                   % Name of the file containing the rigidity variation with depth
 
 application=Param.Configure.application; Slab.application=application;  %Hazard: All magnitude bins - all barycenters
                                                   %PTF:    Magnitude and location around estimated ones
@@ -182,23 +183,31 @@ else
     bnd_mesh=nodes(bnd,:);
 end
 
-if ~Rigidity_file_logic
-    if Stress_drop_logic
-        for j=1:N_scaling
-            V1=-(gamma2(1,j)+2*gamma1(1,j))/(gamma1(1,j)+gamma2(1,j));
-            V2=-(gamma1(1,j)+2*gamma2(1,j))/(gamma1(1,j)+gamma2(1,j));
-            exponent=(gamma1(1,j)+gamma2(1,j));
-            exponent=exponent/(gamma1(1,j)*V1+gamma2(1,j)*V2-gamma1(1,j)-gamma2(1,j));
+
+if Stress_drop_logic
+    for j=1:N_scaling
+        V1=-(gamma2(1,j)+2*gamma1(1,j))/(gamma1(1,j)+gamma2(1,j));
+        V2=-(gamma1(1,j)+2*gamma2(1,j))/(gamma1(1,j)+gamma2(1,j));
+        exponent=(gamma1(1,j)+gamma2(1,j));
+        exponent=exponent/(gamma1(1,j)*V1+gamma2(1,j)*V2-gamma1(1,j)-gamma2(1,j));
+        if ~Rigidity_file_logic
             [mu_all,mu_BL,mu_bal]=Assign_rigidity(-1e-3*barycenters_all(:,3),Fact_rigidity,exponent);
-            Slab.fact_mu_z(j,:)=mu_all./mu_BL; %factor to be used to balance stress drop through L/W and Area
-            clear mu_BL V1 V2
+        else
+            [mu_all,mu_BL]=Assign_rigidity_from_file(-1e-3*barycenters_all(:,3),Rigidity_file);
         end
-    else
-        mu_all=Assign_rigidity(-1e-3*barycenters_all(:,3),Fact_rigidity);
+        Slab.fact_mu_z(j,:)=mu_all./mu_BL; %factor to be used to balance stress drop through L/W and Area
+        clear mu_BL V1 V2
     end
 else
-    mu_all=Assign_rigidity_from_file(-1e-3*barycenters_all(:,3),Rigidity_file);
+    if ~Rigidity_file_logic
+        mu_all=Assign_rigidity(-1e-3*barycenters_all(:,3),Fact_rigidity);
+    else
+        mu_all=Assign_rigidity_from_file(-1e-3*barycenters_all(:,3),Rigidity_file);
+    end
 end
+
+
+
 
 
 
@@ -302,6 +311,7 @@ function [ mu,mu_BL,mu_bal ] = Assign_rigidity(depth,Fact_mu,exponent)
 %   Detailed explanation goes here
 %%  Assign rigidity variation
 
+
 PREM_mu=[ 0 26.5;3 26.5;15 43.9;24.4 67.8;40 67.6;60 67.3;80 64.6;115 64.2];
 
 a = 0.5631; b = 0.0437; 
@@ -338,10 +348,35 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function mu = Assign_rigidity_from_file(depth,namefile)
+function [mu,mu_BL] = Assign_rigidity_from_file(depth,namefile)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 %%  Assign rigidity variation
+
+if nargout==2
+    PREM_mu=[ 0 26.5;3 26.5;15 43.9;24.4 67.8;40 67.6;60 67.3;80 64.6;115 64.2];
+    
+    a = 0.5631; b = 0.0437; 
+    
+    mu_BL=zeros(length(depth),1);
+    %%% GEIST & BILEK RIGIDITY
+    %%% AVERAGE WITH PREM RIGIDITY
+    for i=1:length(depth)
+        mu_BL(i) = 10^(a + b*depth(i));
+            for j=1:length(PREM_mu(:,1))-1
+            if depth(i) >= PREM_mu(j,1) && depth(i) <= PREM_mu(j+1,1)
+                rigidity_PREM(i) = linear_interp(depth(i),PREM_mu(j:j+1,:));
+                break
+            end
+        end
+        if  mu_BL(i) >= rigidity_PREM(i)
+            if depth(i)>10
+               mu_BL(i) = rigidity_PREM(i);
+            end
+        end
+        %clear rigidity_PREM
+    end
+end
 
 if ~exist(['../config_files/Parameters/' namefile])
     disp('Error: File of rigidity variation not available: PLEASE CHECK!');
