@@ -51,7 +51,7 @@ or (if you have installed the MATLAB runtime)
 
     ./run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
-The Slab 2.0 files (*sam_slab2_dep_02.23.18.xyz* or *sam_slab2_dep_02.23.18.grd*) are also included in the folder *utils/sz_slabs*. Nevertheless, they won't be used. In the folder *utils/sz_slabs/* a database of precomputed mesh is available. In particular this example makes use the southamerica folder
+The Slab 2.0 files (*sam_slab2_dep_02.23.18.xyz* or *sam_slab2_dep_02.23.18.grd*) are also included in the folder *utils/sz_slabs* as in the previous Tohoku example. Nevertheless, they won't be used. Instead, we show how to use of a database of precomputed mesh available in the folder *utils/sz_slabs/*. In particular we use for this example the discretization contained in the folder *southamerica*. More details about this database can be found in the [Wiki](https://github.com/antonioscalaunina/ANTI-FASc/wiki) documentation
 
     alaskaaleutians   hjort                 manokwari         outerrise_kermadectonga  sangihe             timor
     arutrough         izumariana            manus             outerrise_puysegur       sangihe_backthrust  timortrough
