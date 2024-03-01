@@ -102,7 +102,7 @@ Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAM
     "Rigidity_file_logic": 0,            # No rigidity file is used for defining the rigidity variation with depth
     "Rigidity_file": "Rigidity_variation.txt",
     "Stress_drop_var": 0,                # No stress drop variation is imposed among scenarios
-    "Fact_rigidity": 0.5                 # If "Rigidity_file_logic": 0 a rigidity variation similar to what proposed by Scala et al. 2020 is imposed. This choice uses at each depth an intermediate value between the Bilek & Lay (1999) variation and PREM is imposed. See Scala et al. (2020) and Wiki documentation for more details
+    "Fact_rigidity": 0.5                 # If "Rigidity_file_logic": 0 a rigidity variation similar to what proposed by Scala et al. 2020 is imposed. This choice uses at each depth an intermediate value between the Bilek & Lay (1999) variation and PREM is imposed. See Scala et al. (2020) and [Wiki](https://github.com/antonioscalaunina/ANTI-FASc/wiki) documentation for more details
 
 The magnitude bins and the rupture geometries (according to the selected scaling laws are set in the input file *config_files/Parameters/scaling_relationship.json* described below. In this example we use a selection similar to that one proposed in the framework of the project TSUMAPS-NEAM (see Basili et al. 2021) using the Strasser et al. (2010) and the Murotani et al.(2013) scaling relationships. See comments beside:
 
