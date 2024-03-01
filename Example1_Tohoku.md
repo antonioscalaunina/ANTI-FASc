@@ -102,7 +102,7 @@ Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAM
     "Rigidity_file_logic": 0,            # No rigidity file is used for defining the rigidity variation with depth
     "Rigidity_file": "Rigidity_variation.txt",
     "Stress_drop_var": 0,                # No stress drop variation is imposed among scenarios
-    "Fact_rigidity": 0.5                 # If "Rigidity_file_logic": 0 a rigidity variation similar to what proposed by Scala et al. 2020 is imposed. This choice uses at each depth an intermediate value between the Bilek & Lay (1999) variation and PREM is imposed. See Scala et al. (2020) and [Wiki](https://github.com/antonioscalaunina/ANTI-FASc/wiki) documentation for more details
+    "Fact_rigidity": 0.5                 # If "Rigidity_file_logic": 0 a rigidity variation similar to what proposed by Scala et al. 2020 is imposed. This choice uses at each depth an intermediate value between the Bilek & Lay (1999) variation and PREM is imposed. See Scala et al. (2020) and the Wiki documentation for more details
 
 The magnitude bins and the rupture geometries (according to the selected scaling laws are set in the input file *config_files/Parameters/scaling_relationship.json* described below. In this example we use a selection similar to that one proposed in the framework of the project TSUMAPS-NEAM (see Basili et al. 2021) using the Strasser et al. (2010) and the Murotani et al.(2013) scaling relationships. See comments beside:
 
@@ -188,19 +188,19 @@ or, alternatively (with MATLAB Runtime):
 
 This module makes use the same input parameters previously described and will create for each selected barycenter a *QuakeArea* file containing the cells actually rupturing for that particular simulation. More details about the generation of these files and the folder system can be found in the [Wiki](https://github.com/antonioscalaunina/ANTI-FASc/wiki) documentation
     
-Finally with the following commands you run the slip distributions computation:
+Finally with the following commands you might run the slip distributions computation. For each rupture area from the previous step a number of slip distribution is computed as indicated in the file *input.json*
 
-     cd ../src/k223d/
+     cd ../src/k223d/       # Compiling the k223d.f90 module
      make clean
      make
-     mv k223d.x ../../bin
+     mv k223d.x ../../bin                 # moving the executable in the bin folder
      cd ../..
-     ./src/bash_scripts/run_homo.sh    # To compute slip distributions with uniform rigidity
-     ./src/bash_scripts/run_var.sh     # To compute slip distributions with variable rigidity
+     ./src/bash_scripts/run_homo.sh    # To compute the slip distribution ensemble with uniform rigidity
+     ./src/bash_scripts/run_var.sh     # To compute slip distributions ensemble with variable rigidity
      
  # 4 - Postprocessing
  
- The output will be organized as shown in the following tree:
+ The output will be finally organized as shown in the following tree:
  
      output/
     └── Tohoku_M90_E14237_N3832_slip    #Name of events + Magnitude + Location + _slip
@@ -249,6 +249,8 @@ Finally with the following commands you run the slip distributions computation:
     143.060059   37.862545   18.871019  143.191238   37.904606   17.327589  143.067352   37.977760   19.145472   90.000000   24.058483
     142.473907   38.087746   29.206949  142.514374   37.983589   27.932550  142.614288   38.076675   26.574770   90.000000   18.332708
     ..................................................................................................................................
+
+It is important to notice that at the moment a predefined rake=90° is imposed. Next versions of the code will implement the possibility of impose different (possibly varying) rake angles.
     
  They can be easily plotted by simple personal scripts. In the folder *utils* there is the script *slip_distribution_plot_AGI.m*. As for all the MATLAB scripts, this one can be run either in the MATLAB command window or with one of the following commands:
  
