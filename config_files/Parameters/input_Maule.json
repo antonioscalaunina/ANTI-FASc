@@ -28,6 +28,8 @@
 "minimum_interdistance": 0.1,
 "hypo_baryc_distance": 1.0,
 "Fact_area_scaling": 1,
+"Rigidity_file_logic": 1,
+"Rigidity_file": "Rigidity_variation.txt",
 "Stress_drop_var": 0,
 "Fact_rigidity": 0.5
 }
