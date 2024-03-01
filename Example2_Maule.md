@@ -64,7 +64,8 @@ The Slab 2.0 files (*sam_slab2_dep_02.23.18.xyz* or *sam_slab2_dep_02.23.18.grd*
     floreswetar       macquarienorth        north_sulawesi    ryuku                    sunda2
     hellenic          makran2               outer_rise_timor  sandwich                 tanimbar
 
-Now:
+ !!!VERY IMPORTANT: This mesh is very huge and hence the computation of selected barycenter might be very long. This selection is already computed and stored in the file *config_files/Barycenters/ind_aux_full_SoA.mat*. Hence you can skip this part and go directly to step 3. However, if you want to test also this part follow the instructions below
+
     
     cd barycenter_selection/
 
@@ -75,6 +76,8 @@ And then:
 or:
 
     ./run_ind_baryc_pre.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
+
+
 
 
     
