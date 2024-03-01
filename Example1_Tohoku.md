@@ -28,7 +28,7 @@ To download the code you can either download the zip archive from the web-page o
 
     
 
-The download of the zip file archive does not download all the precomputed configuration/input files, however you can create them on your own. To run the following example the configuration files database is not necessary, since you will create everything you need start over. see PREPROCESS section of this section for more details 
+The download of the zip file archive does not download all the precomputed input files of configuration. However you can create them on your own. In particular, to run the following example the configuration files database is not necessary, since you will create everything you need start over. see PREPROCESS section of this section for more details 
 
     
 You can download the repository also typing:
@@ -39,35 +39,27 @@ Finally, for some linux distributions it could be necessary to type:
 
     git-lfs clone https://github.com/antonioscalaunina/ANTI-FASc.git
     
-to download all the precomputed configuration files.
+to enable the download of all the precomputed configuration files.
 
 Once downloaded the package, on your personal computer and within the main folder, you may need to give all the permissions to read and execute all the files. Please type:
 
     cd ANTI-FASc
     sudo chmod -R +x *
 
-The MATLAB modules of the software can be run either installing a licensed version (MATLAB R2020a or newer) or installing for free a MATLAB Runtime (MATLAB Runtime R2020a or newer).
-The released versions and the instructions for installations of MATLAB-Runtime can be found at: 
+The MATLAB modules of the software can be run either installing a licensed version (MATLAB R2020a or newer) or installing for free a MATLAB Runtime library (MATLAB Runtime R2020a or newer).
+The released versions and the instructions for installations of MATLAB-Runtime can be found [here](https://www.mathworks.com/products/compiler/matlab-runtime.html): 
 
-    https://www.mathworks.com/products/compiler/matlab-runtime.html
-    
     
 # 2 - Preprocess
 
-In the preprocess part we firstly generate a mesh defined on the Kurils-Japan slab geometry. This has been defined in the framework of the project Slab 2.0 and is available at the web-page:
-
-    https://www.sciencebase.gov/catalog/item/5aa4060de4b0b1c392eaaee2
-    
-Other slab models can be found at:
-
-    https://www.sciencebase.gov/catalog/item/5aa1b00ee4b0b1c392e86467
+In the preprocess part we firstly generate a mesh defined on the Kurils-Japan slab geometry. This has been defined in the framework of the project Slab 2.0 and is available at the [web-page](https://www.sciencebase.gov/catalog/item/5aa4060de4b0b1c392eaaee2), while other slabs can be found [here](https://www.sciencebase.gov/catalog/item/5aa1b00ee4b0b1c392e86467):
     
     
 ANTI-FASc mesh generator can work by using both the *_dep*.xyz and the *_dep*.grd file that you can download at the mentioned webpages. These two files, for this example are already available in the folder *utils/sz_slabs/*
 
 The mesh generation will be managed through the configuration set in the file *config_files/Parameters/input.json*.
 
-To use the predefined *input.json* file for Tohoku example, within the folde *config_files/Parameters* type:
+To use the predefined *input.json* file for the Tohoku example, within the folde *config_files/Parameters* type:
     
     cp input_Tohoku.json input.json 
 
@@ -104,7 +96,7 @@ Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAM
     "Stress_drop_var": 0,                # No stress drop variation is imposed among scenarios
     "Fact_rigidity": 0.5                 # If "Rigidity_file_logic": 0 a rigidity variation similar to what proposed by Scala et al. 2020 is imposed. This choice uses at each depth an intermediate value between the Bilek & Lay (1999) variation and PREM is imposed. See Scala et al. (2020) and the Wiki documentation for more details
 
-The magnitude bins and the rupture geometries (according to the selected scaling laws are set in the input file *config_files/Parameters/scaling_relationship.json* described below. In this example we use a selection similar to that one proposed in the framework of the project TSUMAPS-NEAM (see Basili et al. 2021) using the Strasser et al. (2010) and the Murotani et al.(2013) scaling relationships. See comments beside:
+The magnitude bins and the rupture geometries (according to the selected scaling laws) are set in the input file *config_files/Parameters/scaling_relationship.json* described below. In this example we use a selection similar to that one proposed in the framework of the project TSUMAPS-NEAM (see Basili et al. 2021) using the Strasser et al. (2010) and the Murotani et al.(2013) scaling relationships. See comments beside:
 
     { 
     "Magnitude_bins": {                                     # Within this section the number of magnitude bins and the magnitude bins are defined
@@ -171,7 +163,7 @@ Alternatively, with the MATLAB Runtime you can type:
 
     ./run_ind_baryc_pre.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
 
-This step is the longest of the whole process and may take several minutes (until hours on some personal computers). However the barycenter selection is stored and can be always used for other tests based on the same magnitude binning and scaling relationship selection over the same mesh discretization.
+This step is the longest of the whole process and may take several minutes (until hours on some personal computers). However, once it is run, the barycenter selection is stored and can be always used for other tests based on the same magnitude binning and scaling relationship selection over the same mesh discretization.
     
 
 # 3 - Rupture areas and slip distributions 
