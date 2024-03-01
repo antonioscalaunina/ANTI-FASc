@@ -2,22 +2,21 @@
 
 The second example will generate slip distributions based on the location and magnitude of the M8.8 Maule earthquake occurred on the south-american slab on the 2010-02-27.
 
-At the end of this example other two similar tests are presented. In these tests the mesh generation is skipped and the precomputed meshes are used.
+In this example the mesh generation is skipped and the precomputed mesh and input baryceneter files are used.
 
 The procedure is very similar to the previous example and you only need to change some of the settings in the *config_files/Parameters/input.json* file.
 From the available files on this repository you can simply change the "main" input file as follow:
 
     cd config_files/Parameters
-    cp input.json input_Tohoku.json  #to keep the input file for the Tohoku example
     cp input_Maule.json input.json
     
 The new *input.json* file will appear as (check the meaning of the parameters in the example 1:
 
-    {"zone_name": "southamerica2",
+    {"zone_name": "southamerica",
         "Merc_zone": 18,
-    "acronym": "SA2",
-        "mesh_gen": 1,
-    "slab_file": "sam_slab2_dep_02.23.18.xyz",
+    "acronym": "SoA",
+        "mesh_gen": 0,
+    "slab_file": "[]",
     "seismog_depth": 60,
     "depth_interpolator": "nearest",
     "mesh_convex": 0.3,
@@ -53,7 +52,17 @@ or (if you have installed the MATLAB runtime)
 
     ./run_create_mesh_file.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
     
-The needed files (*sam_slab2_dep_02.23.18.xyz* or *sam_slab2_dep_02.23.18.grd*) can be downloaded from the Slab 2.0 website. For this example they are already included in the folder *utils/sz_slabs*
+The Slab 2.0 files (*sam_slab2_dep_02.23.18.xyz* or *sam_slab2_dep_02.23.18.grd*) are also included in the folder *utils/sz_slabs*. Nevertheless, they won't be used. In the folder *utils/sz_slabs/* a database of precomputed mesh is available. In particular this example makes use the southamerica folder
+
+    alaskaaleutians   hjort                 manokwari         outerrise_kermadectonga  sangihe             timor
+    arutrough         izumariana            manus             outerrise_puysegur       sangihe_backthrust  timortrough
+    banda_detachment  japan                 mexico            outerrisenewhebrides     se_sulawesi         tolo_thrust
+    calabrian         kermadectonga2        moresby_trough    outerrisesolomon         seram_thrust        trobriand
+    cascadia          kurils                mussau            outerrisesunda           seramsouth
+    cyprus            kurilsjapan           newguinea2        philippine               solomon2
+    flores            macquarieislandnorth  newhebrides2      puysegur2                southamerica
+    floreswetar       macquarienorth        north_sulawesi    ryuku                    sunda2
+    hellenic          makran2               outer_rise_timor  sandwich                 tanimbar
 
 Now:
     
@@ -66,6 +75,8 @@ And then:
 or:
 
     ./run_ind_baryc_pre.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
+
+
     
 # 3 - Rupture areas and slip distributions
 
