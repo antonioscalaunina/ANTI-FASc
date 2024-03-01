@@ -37,7 +37,7 @@ From now on the step will be fully similar to the "Tohoku" example
 
 #  1 - Preprocess
 
-Enter in the preprocess folder
+From the main folder, enter in the preprocess folder
 
     cd preprocess
 
