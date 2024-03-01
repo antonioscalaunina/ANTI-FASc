@@ -91,7 +91,7 @@ or:
 
 Now, to run the rupture areas computation
 
-    mv ../../bin
+    cd ../../bin
     
 And execute the script *Rupture_areas_OF.m*
 
