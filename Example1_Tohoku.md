@@ -24,9 +24,9 @@ It could also be useful to install git-lfs:
 
 git-lfs will allow you to download the whole package of the code that also includes some pre-computed configuration files distributed in the *config_files/* subdfolders
 
-To download the code you can either download the zip archive from the following web-page: 
+To download the code you can either download the zip archive from the web-page of the [repository](https://github.com/antonioscalaunina/ANTI-FASc): 
 
-    https://github.com/antonioscalaunina/ANTI-FASc
+    
 
 The download of the zip file archive does not download all the precomputed configuration/input files, however you can create them on your own. To run the following example the configuration files database is not necessary, since you will create everything you need start over. see PREPROCESS section of this section for more details 
 
