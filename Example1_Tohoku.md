@@ -1,6 +1,8 @@
 # EXAMPLE 1 Tohoku earthquake
 
-In this brief guide, we describe the instructions to install all the necessary requirements to run ANTI-FASc along with a practical example.
+In this brief guide, we describe the instructions to install all the necessary requirements to run ANTI-FASc along with a practical example. 
+In this example we generate a set of scenarios based on location and magnitude of 2011, March the 11th, Tohoku earthquake
+
 All the instructions have been tested on the OS Ubuntu20.04. The procedure consists of 4 phases: Installation, Preprocess, Rupture Areas and Slip Distribution, Postprocess
 
 # 1 - Installation
@@ -22,15 +24,18 @@ It could also be useful to install git-lfs:
 
 git-lfs will allow you to download the whole package of the code that also includes some pre-computed configuration files distributed in the *config_files/* subdfolders
 
-To download the code you can either download the zip archive from the following web-page: (this option does not download all the precomputed configuration files, however you can create them on your own. Moreover, to run the following example the configuration files database is not necessary, see PREPROCESS section of this guide) 
+To download the code you can either download the zip archive from the following web-page: 
 
     https://github.com/antonioscalaunina/ANTI-FASc
+
+The download of the zip file archive does not download all the precomputed configuration/input files, however you can create them on your own. To run the following example the configuration files database is not necessary, since you will create everything you need start over. see PREPROCESS section of this section for more details 
+
     
-or typing:
+You can download the repository also typing:
 
     git clone https://github.com/antonioscalaunina/ANTI-FASc.git
     
-For some linux distributions it could be necessary to type:
+Finally, for some linux distributions it could be necessary to type:
 
     git-lfs clone https://github.com/antonioscalaunina/ANTI-FASc.git
     
@@ -39,9 +44,9 @@ to download all the precomputed configuration files.
 Once downloaded the package, on your personal computer and within the main folder, you may need to give all the permissions to read and execute all the files. Please type:
 
     cd ANTI-FASc
-    sudo chmod -R ugo+rwx *
+    sudo chmod -R +x *
 
-The MATLAB modules of the platform can be run either installing a licensed version (MATLAB R2020a or newer) or installing for free a MATLAB Runtime (MATLAB Runtime R2020a or newer).
+The MATLAB modules of the software can be run either installing a licensed version (MATLAB R2020a or newer) or installing for free a MATLAB Runtime (MATLAB Runtime R2020a or newer).
 The released versions and the instructions for installations of MATLAB-Runtime can be found at: 
 
     https://www.mathworks.com/products/compiler/matlab-runtime.html
@@ -49,7 +54,6 @@ The released versions and the instructions for installations of MATLAB-Runtime c
     
 # 2 - Preprocess
 
-In this example we generate slip distributions compatible with the estimated magnitude and location of the Mw 9.0 Tohoku earthquake (2011-03-11). 
 In the preprocess part we firstly generate a mesh defined on the Kurils-Japan slab geometry. This has been defined in the framework of the project Slab 2.0 and is available at the web-page:
 
     https://www.sciencebase.gov/catalog/item/5aa4060de4b0b1c392eaaee2
@@ -59,7 +63,7 @@ Other slab models can be found at:
     https://www.sciencebase.gov/catalog/item/5aa1b00ee4b0b1c392e86467
     
     
-ANTI-FASc mesh generator can work by using both the *_dep*.xyz and the *_dep*.grd file that you can download here. These two files, for this example are already available in the folder *utils/sz_slabs/*
+ANTI-FASc mesh generator can work by using both the *_dep*.xyz and the *_dep*.grd file that you can download at the mentioned webpages. These two files, for this example are already available in the folder *utils/sz_slabs/*
 
 The mesh generation will be managed through the configuration set in the file *config_files/Parameters/input.json*.
 
@@ -74,8 +78,8 @@ Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAM
     "acronym": "KJ2",                #Acronym (THREE DIGITS!) - it will be used to generate and use all the configuration files all the process long
         "mesh_gen": 1,               # 1 means that a new mesh should be generated
     "slab_file": "kur_slab2_dep_02.24.18.xyz",    #name of the Slab 2.0 file
-    "seismog_depth": 60,            #Max depth included in the mesh
-    "depth_interpolator": "v4"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" is the suggested option but it could not work depending on MATLAB configuration. In this case change with "nearest"
+    "seismog_depth": 60,            #Max depth (km) included in the mesh. It will exclude all the nodes deeper if a new mesh is being generated
+    "depth_interpolator": "v4"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" is the suggested option but it could not work depending on MATLAB configuration. It can also significantly slow down the process. In this case replace "v4" with "nearest"
     "mesh_convex": 0.5              # Mesh convexity: defined in the range [0 1]. 0 convex hull mesh boundary - 1 tightest single-region boundary. Use always values <= 0.5. Sometimes mesh generation might produce error about the non-uniqueness of face ID due to the concavity of mesh boundary: in that case, please slightly decrease "mesh_convex" 
     "element_size": 12.5e3,         #Average size of mesh face
 
@@ -85,14 +89,15 @@ Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAM
     "Magnitude" : 9.0                    #Fixed magnitude
     },
     "Configure": {
-    "application": "PTF",
-    "shape": "Rectangle",
+    "application": "PTF",                # This application limits the computed scenarios to magnitude and location range around the set values. See *Example3_HazardMakran.md* for "Hazard" application           
+    "shape": "Rectangle",                # This choice allows to compute scenarios with aspect ratio L/W preserved. The other possible choice is "Circle". More details in the Wiki documentation (under construction)
     "numb_stoch": 5,                     # Number of stochastic slip for each rupture areas
     "variable_mu": 1,                    # 1 means that also the distributions with variable rigidity have to be computed
-    "Magnitude_lb": 0.15,                # Magnitude in a range [Mw-0.15 Mw+0.15] will be accounted
+    "Magnitude_lb": 0.15,                # Magnitude in a range [Mw-0.15 Mw+0.15] will be accounted, used only for "application": "PTF"
     "Magnitude_ub": 0.15,
-    "hypo_baryc_distance": 1.0,          # Rupture barycenters at less than 1 Length (inferred from scaling law for each Magnitude bin) form hypocenter will be accounted
-
+    "hypo_baryc_distance": 1.0,          # Rupture barycenters at less than 1 Length (inferred from scaling law for each Magnitude bin) form hypocenter will be accounted, used only for "application": PTF
+    "minimum_bnd_distance": 0.25,        # These two options are used to limit the number of rupture areas dependending on Magnitude (and Rupture areas extension). In the preprocess file a set of rupture barycenter is selected
+    "minimum_interdistance": 0.1,
 
 To start the preprocess run, move into the preprocess folder:
 
