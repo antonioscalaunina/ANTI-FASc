@@ -1,6 +1,6 @@
 # EXAMPLE 2 Maule earthquake
 
-The second example will generate slip distributions based on the location and magnitude of the M8.8 Maule earthquake occurred on the south-american slab on the 2010-02-27.
+The second example will generate slip distributions based on the location and magnitude of the M8.8 Maule earthquake occurred on the south-american slab on the 2010-02-27. Our suggestion is to run this example after the first one presented in the file Example1_Tohoku.md, since most steps and better detailed in that previous example.
 
 In this example the mesh generation is skipped and the precomputed mesh and input baryceneter files are used. 
 The procedure is very similar to the previous example and you only need to change some of the settings in the *config_files/Parameters/input.json* file.
