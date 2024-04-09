@@ -252,6 +252,8 @@ It is important to notice that at the moment a predefined rake=90° is imposed. 
     ./run_slip_distribution_plot_AGI.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
      
 This script will ask which class of scenario (which magnitude and scaling law) you would like to plot and will save the *.png* plots in the corresponding *output* folder
+
+Also the python script [plot_slip_distribution.py](https://github.com/antonioscalaunina/ANTI-FASc/blob/main/utils/plot_slip_distribution.py) can be used for the same goal. It will produce for the selected folders the slip distributions in standard geoJSON format and interactive maps in HTML format
     
 
 
