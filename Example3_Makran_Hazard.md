@@ -19,7 +19,9 @@ And just as example, we used a simplified magnitude binning (only 18 bins betwee
     cp scaling_relationship_Makran.json scaling_relationship.json
 
 The preprocess steps might be skipped for this applications exploiting the already available files stored in the folder *config_files*. 
-However with the following *input.json* and *scaling_relationship.json* files you can also run the whole workflow starting from the preprocess steps
+However with the following *input.json* and *scaling_relationship.json* files you can also run the whole workflow starting from the preprocess steps:
+
+input.json
 
             {"zone_name": "makran2",    # If the user want to skip the preprocess phase this name should be the corresponding folder name in this [file](https://github.com/antonioscalaunina/ANTI-FASc/blob/main/config_files/slabs_database)
             "Merc_zone": 41,            # Select the proper Mercator Zone from this [file](https://github.com/antonioscalaunina/ANTI-FASc/blob/main/config_files/slabs_database)
@@ -52,7 +54,7 @@ However with the following *input.json* and *scaling_relationship.json* files yo
             "Stress_drop_var": 0,                # No stress drop variation is imposed among scenarios
             "Fact_rigidity": 0.5                 # If "Rigidity_file_logic": 0 a rigidity variation similar to what proposed by Scala et al. 2020 is imposed. This choice uses at each depth an intermediate value between the Bilek & Lay (1999) variation and PREM is                                                             imposed. See Scala et al. (2020) and the Wiki documentation for more details
 
-
+scaling_relationship.json
 
             { 
             "Magnitude_bins": {
