@@ -14,7 +14,12 @@ To run this example you should copy the input_Makran.json into the standard inpu
 
     cp input_Makran.json input.json
 
-The preprocess steps might be skipped for this applications exploiting the already available files stored in the folder *config_files*. However with the following 
+And just as example, we used a simplified magnitude binning (only 18 bins between Mw 6.0 and Mw 9.0) and only one scaling relationship (Strasser). To use this simplified version
+
+    cp scaling_relationship_Makran.json scaling_relationship.json
+
+The preprocess steps might be skipped for this applications exploiting the already available files stored in the folder *config_files*. 
+However with the following *input.json* and *scaling_relationship.json* files you can also run the whole workflow starting from the preprocess steps
 
             {"zone_name": "makran2",    # If the user want to skip the preprocess phase this name should be the corresponding folder name in this [file](https://github.com/antonioscalaunina/ANTI-FASc/blob/main/config_files/slabs_database)
             "Merc_zone": 41,            # Select the proper Mercator Zone from this [file](https://github.com/antonioscalaunina/ANTI-FASc/blob/main/config_files/slabs_database)
@@ -46,3 +51,25 @@ The preprocess steps might be skipped for this applications exploiting the alrea
             "Rigidity_file": "Rigidity_variation.txt", # Name of the rigidity profile file. This example file can be found [here](https://github.com/antonioscalaunina/ANTI-FASc/blob/main/config_files/Parameters/Rigidity_variation.txt)
             "Stress_drop_var": 0,                # No stress drop variation is imposed among scenarios
             "Fact_rigidity": 0.5                 # If "Rigidity_file_logic": 0 a rigidity variation similar to what proposed by Scala et al. 2020 is imposed. This choice uses at each depth an intermediate value between the Bilek & Lay (1999) variation and PREM is                                                             imposed. See Scala et al. (2020) and the Wiki documentation for more details
+
+
+
+            { 
+            "Magnitude_bins": {
+            "number_bins" : 18, 
+            "Magnitude": [6.0000, 6.5000, 6.8012, 7.0737, 7.3203, 7.5435, 7.7453, 7.9280, 8.0933,
+              8.2429, 8.3782, 8.5007, 8.6115, 8.7118, 8.8025, 8.8846, 8.9588, 9.0260]
+            },
+
+            "Scaling_law": { "number": 1,
+            "name" : ["Strasser"],
+            "Area": [172.187, 515.229, 997.108, 1812.018, 3111.183, 5074.719, 7898.154, 11788.431, 
+	                          16936.419, 23509.360, 31626.155, 41368.179, 52740.956, 65710.323, 80164.115, 
+	      	                  95970.819, 112921.750, 130843.454],
+            "Length": [10.789, 21.159, 31.747, 45.826, 63.882, 86.287, 113.240, 144.837, 180.959, 
+                                221.359, 265.612, 313.263, 363.687, 416.297, 470.395, 525.401, 580.628, 
+		                    635.638]
+ 
+            }
+            }
+
