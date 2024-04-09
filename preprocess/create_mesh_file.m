@@ -151,9 +151,9 @@ Polygon=[2 length(SLAB4mesh)-1 X(1:end-1)' Y(1:end-1)']'; %Japan4mesh(:,1)' Japa
 g=decsg(Polygon);
 model=createpde;
 geometryFromEdges(model,g);
-figure
-pdegplot(model) %,'EdgeLabels','on')
-axis equal
+%figure
+%pdegplot(model) %,'EdgeLabels','on')
+%axis equal
 Lat=[];Lon=[];mesh_default=[];depth_interp=[];
 
 mesh_default=generateMesh(model,'Hmax',el_size,'Hmin',el_size,'GeometricOrder','linear','Hgrad',1.);
