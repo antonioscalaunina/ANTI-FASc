@@ -75,3 +75,44 @@ However with the following *input.json* and *scaling_relationship.json* files yo
             }
             }
 
+
+# 3 - Rupture areas and slip distributions 
+
+As for the previous examples, to start the computation of the rupture areas, in the folder *bin/*, run the MATLAB script *Rupture_areas_OF.m*
+
+it can be also run typing:
+
+    matlab -nodisplay -nosplash -nodesktop -r "run('Rupture_areas_OF.m'); exit;"
+    
+or, alternatively (with MATLAB Runtime):
+
+    ./run_Rupture_areas_OF.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
+
+    
+and with the following commands you might run the slip distributions computation. For each rupture area from the previous step a number of slip distribution is computed as indicated in the file *input.json*
+
+     cd ../src/k223d/       # Compiling the k223d.f90 module
+     make clean
+     make
+     mv k223d.x ../../bin                 # moving the executable in the bin folder
+     cd ../..
+     ./src/bash_scripts/run_homo.sh    # To compute the slip distribution ensemble with uniform rigidity
+     ./src/bash_scripts/run_var.sh     # To compute slip distributions ensemble with variable rigidity
+
+ # 4 - Postprocessing
+ 
+ The folder tree of the outputs and the standard format of the outputs is described in the [Example1](https://github.com/antonioscalaunina/ANTI-FASc/blob/main/Example1_Tohoku.md)
+
+    
+The script *slip_distribution_plot_AGI.m* in the folder *utils* can be still used to plot some of the slip distributions. As for all the MATLAB scripts, this one can be run either in the MATLAB command window or with one of the following commands:
+ 
+    matlab -nodisplay -nosplash -nodesktop -r "run('slip_distribution_plot_AGI.m'); exit;" 
+
+or alternatively,
+ 
+    ./run_slip_distribution_plot_AGI.sh /usr/local/MATLAB/MATLAB_Runtime/v99/
+     
+This script will ask which class of scenario (which magnitude and scaling law) you would like to plot and will save the *.png* plots in the corresponding *output* folder.
+
+Also the python script [plot_slip_distribution.py](https://github.com/antonioscalaunina/ANTI-FASc/blob/main/utils/plot_slip_distribution.py) can be used for the same goal. It will produce for the selected folders the slip distributions in standard geoJSON format and interactive maps in HTML format
+
