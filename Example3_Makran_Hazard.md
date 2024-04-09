@@ -12,6 +12,6 @@ If you have already run the first two examples you should have installed all the
 
 To run this example you should copy the input_Makran.json into the standard input.json file
 
-  cp input_Makran.json input.json
+    cp input_Makran.json input.json
 
 The preprocess steps might be skipped for this applications exploiting the already available files stored in the folder *config_files*. However with the following 
