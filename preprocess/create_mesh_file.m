@@ -157,7 +157,7 @@ axis equal
 Lat=[];Lon=[];mesh_default=[];depth_interp=[];
 
 mesh_default=generateMesh(model,'Hmax',el_size,'Hmin',el_size,'GeometricOrder','linear','Hgrad',1.);
-pdeplot(mesh_default); return
+%pdeplot(mesh_default); return
 %%
 depth_interp=griddata(SLAB_UTM(:,1),SLAB_UTM(:,2),SLAB(:,3),mesh_default.Nodes(1,:)',mesh_default.Nodes(2,:)',depth_int);
 depth_interp=1000*depth_interp;
