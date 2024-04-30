@@ -381,7 +381,7 @@ end
 if ~exist(['../config_files/Parameters/' namefile])
     disp('Error: File of rigidity variation not available: PLEASE CHECK!');
 else 
-    table_mu=importdata(['../config_files/Parameters/' namefile]);
+    table_mu=importdata(['../config_files/Parameters/' namefile],',',1);
     mu=zeros(length(depth),1);
     for i=1:length(depth)
         for j=1:size(table_mu.data,1)-1
