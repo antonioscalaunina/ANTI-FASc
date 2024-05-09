@@ -20,6 +20,7 @@ zone_code=Param.acronym;
 %zone_code=Param.acronym; 
 Slab.zone_code=zone_code; %Slab 
 Merc_Zone=Param.Merc_zone;   %sMercator projection zone
+Slab.Merc_zone=Merc_Zone;
 Zone=Param.zone_name;
 Sub_boundary_logic=logical(false);   
 if Param.Configure.mesh_sub_boundary==1
@@ -131,23 +132,27 @@ N_scaling=Slab.N_scaling; int_dist=Slab.int_dist; elem_size=Slab.elem_size;
                 if (isempty(index_active{i,j}) | int_dist*Length_aux(i,j)<0.5*elem_size/1e3)
                     barycenter{l,j}=index_active{i,j}';
                 else
-                    barycenter{l,j}(1)=index_active{i,j}(1);
-                    kk=2;
-                    for k=2:length(index_active{i,j})
-                        for num=1:kk-1
-                            Lon=[barycenters_all(index_active{i,j}(k),1) barycenters_all(barycenter{l,j}(num),1)];
-                            Lat=[barycenters_all(index_active{i,j}(k),2) barycenters_all(barycenter{l,j}(num),2)];
-                            dist_aux(num)=dist_wh(Lat,Lon);
+                    barycenter{l,j}=[];
+                    selected_points=[];
+                    for k=1:length(index_active{i,j})
+                        point_LL=barycenters_all(index_active{i,j}(k),:);
+                        [point(1),point(2)]=ll2utm(point_LL(2),point_LL(1),Slab.Merc_zone);
+                        point(3)=point_LL(3);
+                        if isempty(selected_points)
+                            selected_points = [selected_points; point];
+                            barycenter{l,j}=[barycenter{l,j}; index_active{i,j}(k)];
+                        else
+                            distances=sqrt(sum((selected_points-point).^2,2));
+                            if min(distances) >= int_dist*Length_aux(i,j)*1e3
+                                selected_points = [selected_points; point];
+                                barycenter{l,j}=[barycenter{l,j}; index_active{i,j}(k)];
+                            end
                         end
-                        if min(dist_aux)>int_dist*Length_aux(i,j)*1e3
-                            barycenter{l,j}(kk)=index_active{i,j}(k);
-                            kk=kk+1;
-                        end
-                        clear dist_aux
                     end
                 end
             end
     end
+                           
 
         
         ind_aux=barycenter;
