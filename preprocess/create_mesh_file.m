@@ -3,7 +3,7 @@
 % cell for all the mesh elements
 
 clc
-clear all
+clearvars
 close all
 tic
 
@@ -90,28 +90,31 @@ for i=1:length(string3)
 end
 
 fclose(fid);
-
+copyfile(namefile,"..\config_files\Mesh\")
 fid=fopen('barycenter_selection/param_zone_input.dat','w');
 fprintf(fid,'!### Geo zone (Three digit acronym)\n');
 fprintf(fid,'%s\n',slab_acronym);
 fprintf(fid,'!#### Mercator projection zone\n');
 fprintf(fid,'%d\n',Zone.Merc_zone);
 fclose(fid);
-t=toc;
+copyfile('barycenter_selection/param_zone_input.dat','..\')
 
 disp('Saving Element to Element connection file')
 %EToE=Element2Element(cells(:,2:4));
 EToE=tiConnect2D(cells(:,2:4));
 filename=strcat('barycenter_selection/EToE_',slab_acronym,'.mat');
 save(filename,'EToE');
+copyfile(filename,"..\config_files\Connection_cell\")
 
 disp('Creating Matrix of the distance')
 Matrix_distance=matrix_distance_nolat(nodes(:,2:4));
 fid=fopen(strcat('barycenter_selection/',slab_acronym,'_matrix_distance.bin'),'w');
 fwrite(fid,Matrix_distance,'float');
 fclose(fid);
+copyfile(strcat('barycenter_selection/',slab_acronym,'_matrix_distance.bin'),"..\config_files\Matrix_distances\");
 disp('Everything concerning the mesh is done')
 
+t=toc;
 return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,7 +160,8 @@ geometryFromEdges(model,g);
 Lat=[];Lon=[];mesh_default=[];depth_interp=[];
 
 mesh_default=generateMesh(model,'Hmax',el_size,'Hmin',el_size,'GeometricOrder','linear','Hgrad',1.);
-%pdeplot(mesh_default); return
+%pdeplot(mesh_default); 
+%return
 %%
 depth_interp=griddata(SLAB_UTM(:,1),SLAB_UTM(:,2),SLAB(:,3),mesh_default.Nodes(1,:)',mesh_default.Nodes(2,:)',depth_int);
 depth_interp=1000*depth_interp;
@@ -175,7 +179,7 @@ tic
 
 Nodes2Face=zeros(size(cells,1)*size(cells,2),2);
 
-for i=1:size(cells,1);
+for i=1:size(cells,1)
     Nodes2Face((i-1)*3+1,:)=sort(cells(i,[1 2])); 
     Nodes2Face((i-1)*3+2,:)=sort(cells(i,[2 3]));
     Nodes2Face((i-1)*3+3,:)=sort(cells(i,[3 1])); 
@@ -243,3 +247,4 @@ raw=fread(fid);
 str=char(raw');
 Struct=jsondecode(str);
 end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
