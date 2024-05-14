@@ -249,6 +249,8 @@ else
                                                  % magnitude (otherwise
                                                  % select_barycenter takes
                                                  % all the barycenters)
+    filename_baryc=strcat('..\config_files\Barycenters\barycenters_all_',zone_code);
+    save(filename_baryc,'barycenters_all');
 end
 Slab.barycenter=barycenter;
 
