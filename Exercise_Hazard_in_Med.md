@@ -1,6 +1,6 @@
 # EXERCISE - Slip distributions for hazard in Mediterranean
 
-Now you should be ready to create your ensemble properly setting your choices in the input files.
+Now you should be ready to create your ensemble properly setting your choices in the *input.json* file.
 
 For this exercise let's create an ensemble for one slab in the Mediterranean basin: Calabrian Arc, Hellenic Arc or Cyprus Arc.
 
