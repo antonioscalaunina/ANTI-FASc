@@ -1,4 +1,4 @@
-# EXERCISE - Slip distribution for hazard in Mediterranean
+# EXERCISE - Slip distributions for hazard in Mediterranean
 
 Now you should be ready to create your ensemble properly setting your choices in the input files.
 
