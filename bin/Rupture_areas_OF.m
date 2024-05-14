@@ -67,8 +67,8 @@ Slab.Rigidity_file_logic=Rigidity_file_logic;       % logical: if file with a pr
 application=Param.Configure.application; Slab.application=application;  %Hazard: All magnitude bins - all barycenters
                                                   %PTF:    Magnitude and location around estimated ones
 shape=Param.Configure.shape; Slab.shape=shape;               %Rectangle for rectangular shape
-                                                  %Circle for circular shape
-                                                  
+elem_size=Param.element_size; Slab.elem_size=elem_size;                                                  %Circle for circular shape
+Slab.Merc_zone=Param.Merc_zone;                                                  
 Fact_rigidity=Param.Configure.Fact_rigidity;  
                                         
 switch application
@@ -561,6 +561,7 @@ barycenters_all=Slab.barycenters_all;
 Length_aux=Slab.LengthSL; Magnitude=Slab.Magnitude;
 Preprocess_logic=Slab.Preprocess_logic; zone_code=Slab.zone_code;
 N_scaling=Slab.N_scaling; int_dist=Slab.int_dist; hypo_baryc_dist=Slab.hypo_baryc_dist;
+elem_size=Slab.elem_size;
 
 if Preprocess_logic
     load(strcat('../config_files/Barycenters/ind_aux_full_',zone_code,'.mat'))
@@ -577,28 +578,29 @@ else
             fprintf('Magnitude bin # %d - Mw=%.4f \n',[i Magnitude(i)])
             l=l+1;
             for j=1:N_scaling
-                if isempty(index_active{i,j})
-                    barycenter{l,j}=index_active{i,j};
+                if (isempty(index_active{i,j}) | int_dist*Length_aux(i,j)<0.5*elem_size/1e3)
+                    barycenter{l,j}=index_active{i,j}';
                 else
-                    barycenter{l,j}(1)=index_active{i,j}(1);
-                    kk=2;
-                    for k=2:length(index_active{i,j})
-                        for num=1:kk-1
-                            Lon=[barycenters_all(index_active{i,j}(k),1) barycenters_all(barycenter{l,j}(num),1)];
-                            Lat=[barycenters_all(index_active{i,j}(k),2) barycenters_all(barycenter{l,j}(num),2)];
-                            dist_aux(num)=dist_wh(Lat,Lon);
+                    barycenter{l,j}=[];
+                    selected_points=[];
+                    for k=1:length(index_active{i,j})
+                        point_LL=barycenters_all(index_active{i,j}(k),:);
+                        [point(1),point(2)]=ll2utm(point_LL(2),point_LL(1),Slab.Merc_zone);
+                        point(3)=point_LL(3);
+                        if isempty(selected_points)
+                            selected_points = [selected_points; point];
+                            barycenter{l,j}=[barycenter{l,j}; index_active{i,j}(k)];
+                        else
+                            distances=sqrt(sum((selected_points-point).^2,2));
+                            if min(distances) >= int_dist*Length_aux(i,j)*1e3
+                                selected_points = [selected_points; point];
+                                barycenter{l,j}=[barycenter{l,j}; index_active{i,j}(k)];
+                            end
                         end
-                        if min(dist_aux)>int_dist*Length_aux(i,j)*1e3
-                            barycenter{l,j}(kk)=index_active{i,j}(k);
-                            kk=kk+1;
-                        end
-                        clear dist_aux
                     end
                 end
             end
     end
-
-        
         ind_aux=barycenter;
         clear barycenter;
 end        
@@ -607,7 +609,7 @@ switch application
     case('PTF')  %Discrimination is the distance from the hypocenter 
         hypo_GEO=Slab.hypo_GEO;
         l=0;
-        fprintf('Barycenter selection\n')
+        fprintf('Barycenter selection (PTF)\n')
         for i=1:size(ind_aux,1)	
             fprintf('Magnitude bin # %d - Mw=%.4f \n',[i Magnitude(index_magnitude(i))])
             l=l+1;
