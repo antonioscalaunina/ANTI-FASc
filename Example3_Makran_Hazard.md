@@ -28,7 +28,7 @@ However with the following *input.json* and *scaling_relationship.json* files yo
             "mesh_gen": 0,              # 0 means that the pre-computed mesh discretization [here](https://github.com/antonioscalaunina/ANTI-FASc/tree/main/utils/sz_slabs) will be used
             "slab_file": "kur_slab2_dep_02.24.18.xyz",    # NOT USED if "mesh_gen": 0
             "seismog_depth": 60,            # NOT USED if "mesh_gen": 0
-            "depth_interpolator": "v4"      # NOT USED if "mesh_gen": 0
+            "depth_interpolator": "nearest"      # NOT USED if "mesh_gen": 0
             "mesh_convex": 0.5              # NOT USED if "mesh_gen": 0 
             "element_size": 12.5e3,         # NOT USED if "mesh_gen": 0
 
