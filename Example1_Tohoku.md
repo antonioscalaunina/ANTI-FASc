@@ -71,7 +71,7 @@ Look carefully at the comments beside the parameters IN PARTICULAR FOR THE PARAM
         "mesh_gen": 1,               # 1 means that a new mesh should be generated
     "slab_file": "kur_slab2_dep_02.24.18.xyz",    #name of the Slab 2.0 file
     "seismog_depth": 60,            #Max depth (km) included in the mesh. It will exclude all the nodes deeper if a new mesh is being generated
-    "depth_interpolator": "v4"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" is the suggested option but it could not work depending on MATLAB configuration. It can also significantly slow down the process. In this case replace "v4" with "nearest"
+    "depth_interpolator": "nearest"      # Algorithm of interpolation between Slab and grid nodes depth. "v4" would be the suggested option but it could not work depending on MATLAB configuration. It can also significantly slow down the process. In this case replace "v4" with "nearest"
     "mesh_convex": 0.5              # Mesh convexity: defined in the range [0 1]. 0 convex hull mesh boundary - 1 tightest single-region boundary. Use always values <= 0.5. Sometimes mesh generation might produce error about the non-uniqueness of face ID due to the concavity of mesh boundary: in that case, please slightly decrease "mesh_convex" 
     "element_size": 12.5e3,         #Average size of mesh face
 
