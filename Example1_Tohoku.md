@@ -46,7 +46,7 @@ Once downloaded the package, on your personal computer and within the main folde
     cd ANTI-FASc
     sudo chmod -R +x *
 
-The MATLAB modules of the software can be run either installing a licensed version (MATLAB R2020a or newer) or installing for free a MATLAB Runtime library (MATLAB Runtime R2020a or newer).
+The MATLAB modules of the software can be run either installing a licensed version (MATLAB R2020a or newer) or installing for free a MATLAB Runtime library (MATLAB Runtime R2024 or newer).
 The released versions and the instructions for installations of MATLAB-Runtime can be found [here](https://www.mathworks.com/products/compiler/matlab-runtime.html): 
 
     
