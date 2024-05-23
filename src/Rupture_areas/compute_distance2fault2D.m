@@ -26,7 +26,7 @@ for i=1:length(stations)
             [p0_aux(j,:),dist_aux(j)]=find_closest_point_segment(fault_UTM(j:j+1,1:2),stations_UTM(i,1:2));
         end
         [distanceJB(i),index_p0]=min(dist_aux*1.e-3);
-        depth_fault=0.5*(fault_UTM(j,3)+fault_UTM(j+1,3))*1.e-3; 
+        depth_fault=fault_UTM(index_p0,3)*1e-3; %0.5*(fault_UTM(j,3)+fault_UTM(j+1,3))*1.e-3; 
         distanceJB(i)=sqrt(distanceJB(i)^2+(depth_fault-depth_station)^2);
         clear depth_fault
         p0(i,:)=p0_aux(index_p0,:);
