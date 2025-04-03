@@ -1,1 +1,0 @@
-Folder containing for each slab mesh the matrix of the distances between all the nodes
